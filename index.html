@@ -1,0 +1,206 @@
+import React, { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Fix default marker icon issue with webpack
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png',
+  iconUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+});
+
+// Simple component to programmatically change map view on pin click
+function FlyTo({ position }) {
+  const map = useMap();
+  if (position) {
+    map.flyTo(position, 8, { duration: 0.8 });
+  }
+  return null;
+}
+
+export default function BrazilTravelSite() {
+  const [emailForm, setEmailForm] = useState({ name: '', email: '' });
+  const [subscribed, setSubscribed] = useState(false);
+  const [flyPos, setFlyPos] = useState(null);
+
+  const destinations = [
+    {
+      id: 'rio',
+      name: 'Rio de Janeiro',
+      coords: [-22.91216, -43.2302],
+      desc: 'Beaches, sugarloaf views, samba nights and unforgettable sunsets.',
+      image: 'https://source.unsplash.com/featured/?rio-de-janeiro',
+      cta: 'Explorar Rio de Janeiro agora',
+    },
+    {
+      id: 'iguazu',
+      name: 'Foz do Iguaçu',
+      coords: [-25.6953, -54.4367],
+      desc: 'One of the most powerful waterfalls on Earth — nature at full force.',
+      image: 'https://source.unsplash.com/featured/?iguazu,waterfall',
+      cta: 'Ver roteiros em Foz do Iguaçu',
+    },
+    {
+      id: 'salvador',
+      name: 'Salvador',
+      coords: [-12.9777, -38.5016],
+      desc: 'Colorful streets, Afro-Brazilian culture and mouth-watering cuisine.',
+      image: 'https://source.unsplash.com/featured/?salvador,bahia',
+      cta: 'Explorar Salvador agora',
+    },
+    {
+      id: 'chapada',
+      name: 'Chapada Diamantina',
+      coords: [-12.5709, -41.4322],
+      desc: 'Epic hikes, caves and crystal clear waterfalls — an adventurer’s paradise.',
+      image: 'https://source.unsplash.com/featured/?chapada,waterfall',
+      cta: 'Ver trilhas na Chapada Diamantina',
+    },
+  ];
+
+  function handleInput(e) {
+    const { name, value } = e.target;
+    setEmailForm(prev => ({ ...prev, [name]: value }));
+  }
+
+  function handleSubscribe(e) {
+    e.preventDefault();
+    // Basic validation
+    if (!emailForm.name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailForm.email)) {
+      alert('Por favor, insira um nome válido e um e-mail válido.');
+      return;
+    }
+    // In production send to your backend / email marketing provider (Mailchimp, SendGrid, etc.)
+    setSubscribed(true);
+    setEmailForm({ name: '', email: '' });
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-green-50 text-slate-900">
+      {/* Header / Banner */}
+      <header className="px-6 py-12 sm:py-20 lg:py-28 text-center">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          Discover Brazil — your next adventure starts here!
+        </h1>
+        <p className="mt-4 text-lg sm:text-xl max-w-2xl mx-auto text-slate-700">
+          Inspiring routes, local tips and curated experiences made for memory-makers.
+        </p>
+        <div className="mt-6 flex justify-center gap-3">
+          <a href="#map" className="inline-block px-6 py-3 rounded-full bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 transition">
+            Explore the map
+          </a>
+          <a href="#subscribe" className="inline-block px-6 py-3 rounded-full border-2 border-blue-600 text-blue-700 font-semibold hover:bg-blue-50 transition">
+            Get exclusive routes
+          </a>
+        </div>
+      </header>
+
+      {/* Two-column area: Map + Destinations */}
+      <main className="px-6 pb-16 lg:pb-28">
+        <section id="map" className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          <div className="lg:col-span-2 bg-white rounded-2xl shadow p-4 h-[520px] overflow-hidden">
+            <MapContainer center={[-14.2350, -51.9253]} zoom={4} scrollWheelZoom={false} className="h-full rounded-xl">
+              <TileLayer
+                attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a>'
+                url="https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png"
+              />
+
+              {destinations.map(dest => (
+                <Marker key={dest.id} position={dest.coords} eventHandlers={{ click: () => setFlyPos(dest.coords) }}>
+                  <Popup className="max-w-xs">
+                    <div className="space-y-2">
+                      <img src={dest.image} alt={dest.name} className="w-full h-32 object-cover rounded" />
+                      <h3 className="font-semibold">{dest.name}</h3>
+                      <p className="text-sm text-slate-600">{dest.desc}</p>
+                      <a href={`#${dest.id}`} className="inline-block mt-2 px-3 py-2 rounded bg-yellow-400 text-sm font-semibold hover:opacity-90">
+                        Explorar agora
+                      </a>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))}
+
+              {flyPos && <FlyTo position={flyPos} />}
+            </MapContainer>
+          </div>
+
+          {/* Destinations list (right column on large screens) */}
+          <aside className="space-y-6">
+            {destinations.map(dest => (
+              <article id={dest.id} key={dest.id} className="bg-white rounded-xl shadow p-4 flex gap-4 items-center">
+                <img src={dest.image} alt={dest.name} className="w-28 h-20 object-cover rounded-md flex-shrink-0" />
+                <div>
+                  <h4 className="font-bold">{dest.name}</h4>
+                  <p className="text-sm text-slate-600">{dest.desc}</p>
+                  <div className="mt-2 flex gap-2">
+                    <button onClick={() => setFlyPos(dest.coords)} className="px-3 py-1 rounded bg-blue-600 text-white text-sm font-medium">{dest.cta}</button>
+                    <a href={`#${dest.id}-details`} className="px-3 py-1 rounded border text-sm">Mais detalhes</a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </aside>
+        </section>
+
+        {/* Why travel with us */}
+        <section className="mt-12 bg-white rounded-2xl shadow p-8">
+          <h2 className="text-2xl font-bold">Por que viajar conosco?</h2>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="p-4 flex items-start gap-3">
+              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">🗺️</div>
+              <div>
+                <h3 className="font-semibold">Roteiros exclusivos</h3>
+                <p className="text-sm text-slate-600">Roteiros pensados para quem busca experiências únicas e personalizadas.</p>
+              </div>
+            </div>
+
+            <div className="p-4 flex items-start gap-3">
+              <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center">💡</div>
+              <div>
+                <h3 className="font-semibold">Dicas de especialistas</h3>
+                <p className="text-sm text-slate-600">Informações práticas e seguras vindas de quem conhece o destino.</p>
+              </div>
+            </div>
+
+            <div className="p-4 flex items-start gap-3">
+              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">📞</div>
+              <div>
+                <h3 className="font-semibold">Suporte 24/7</h3>
+                <p className="text-sm text-slate-600">Estamos prontos para ajudar antes, durante e depois da viagem.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Email capture */}
+        <section id="subscribe" className="mt-10 bg-gradient-to-r from-green-50 via-white to-blue-50 rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6">
+          <div className="flex-1">
+            <h2 className="text-2xl font-bold">Não perca nenhuma dica!</h2>
+            <p className="mt-2 text-slate-700">Cadastre-se e receba roteiros exclusivos, promoções e guias práticos direto no seu e-mail.</p>
+          </div>
+
+          <form onSubmit={handleSubscribe} className="w-full sm:w-auto flex gap-3 items-center">
+            <input name="name" value={emailForm.name} onChange={handleInput} placeholder="Nome" className="px-4 py-3 rounded-lg border" />
+            <input name="email" value={emailForm.email} onChange={handleInput} placeholder="E-mail" className="px-4 py-3 rounded-lg border" />
+            <button type="submit" className="px-5 py-3 rounded-lg bg-yellow-400 font-semibold hover:opacity-90">Cadastrar</button>
+          </form>
+
+          {subscribed && <p className="text-green-700 font-semibold">Obrigado! Verifique seu e-mail para confirmar a inscrição.</p>}
+        </section>
+
+        {/* Footer CTA */}
+        <footer className="mt-12 text-center text-sm text-slate-600">
+          <p>Feito com ❤️ para exploradores do Brasil • Imagens via Unsplash (substitua por suas próprias imagens para uso comercial)</p>
+        </footer>
+      </main>
+
+      {/* Mobile-friendly floating CTA */}
+      <div className="fixed bottom-6 right-6 sm:hidden">
+        <a href="#subscribe" className="inline-block px-4 py-3 rounded-full bg-blue-600 text-white shadow-lg">Receba dicas</a>
+      </div>
+    </div>
+  );
+}
+
