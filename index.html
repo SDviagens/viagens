@@ -15,10 +15,10 @@
     }
     .header-banner {
       /* Imagem do banner principal foi restaurada para um URL genérico */
-      background-image: url('https://images.unsplash.com/photo-1502444330042-33821774f176?q=80&w=2670&auto=format&fit=crop');
+      background-image: url('https://images.unsplash.com/photo-1502444330042-33821774f176?q=80&w=2670&auto=format&fit-crop');
       background-size: cover;
       background-position: center;
-      position: relative;
+      position: relative; 
     }
     .header-overlay {
       background-color: rgba(0, 0, 0, 0.5);
@@ -85,16 +85,41 @@
       top: 100%;
       left: 0;
     }
+    /* Estilo para a mensagem de sucesso */
+    #success-message {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
   </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#b3b3b3]">
 
   <!-- Header - Com imagem de lago, navegação e texto dourado -->
   <header class="header-banner text-white p-6 shadow-lg">
-    <div class="header-overlay p-6 md:p-10">
+    <!-- SVG do avião e seu caminho, posicionado no background do banner -->
+    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style="z-index: 1;">
+      <!-- Caminho para o avião seguir (invisível) -->
+      <path id="airplane-path" d="M -5 50 C 25 10, 75 90, 105 50" fill="none" stroke="transparent" />
+      
+      <!-- Caminho tracejado que vai se desenhando -->
+      <path id="traced-path" d="M -5 50 C 25 10, 75 90, 105 50" fill="none" stroke="#C0A05D" stroke-width="0.5" stroke-linecap="round" stroke-dasharray="2" />
+      
+    </svg>
+    
+    <!-- Este overlay e o conteúdo estão em uma camada superior ao SVG, garantindo visibilidade -->
+    <div class="header-overlay p-6 md:p-10 z-20 relative">
       <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div class="flex items-center space-x-4">
-          <img src="uploaded:image_f6e244.png-d3091330-0b05-4e52-a3e9-8a8916cfef55" alt="SD Viagens Logo" class="h-12 w-auto">
+          <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/imagem_2025-08-18_005838677_ijxuzc" alt="SD Viagens Logo" class="h-12 w-auto">
           <h1 class="text-4xl font-bold text-logo-gold">SD Viagens</h1>
         </div>
         <p class="mt-2 md:mt-0 text-lg md:text-xl text-center text-logo-gold">Experiências de Luxo no Brasil</p>
@@ -105,15 +130,15 @@
         <!-- Menu de navegação -->
         <nav id="main-menu" class="hidden md:flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 items-center">
           <!-- Link para Home -->
-          <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300" onclick="showCategory('home')">Home</a>
+          <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300" onclick="showSection('home-section')">Home</a>
           
           <!-- Dropdown para Destinos -->
           <div class="relative dropdown">
             <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300">Destinos</a>
             <div class="dropdown-menu">
               <!-- Links que ativam as categorias -->
-              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700" onclick="showCategory('brazil')">Brasil</a>
-              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700" onclick="showCategory('international')">Internacional</a>
+              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700" onclick="showSection('brazil-section')">Brasil</a>
+              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700" onclick="showSection('international-section')">Internacional</a>
             </div>
           </div>
           
@@ -135,14 +160,15 @@
             <h3 class="text-2xl font-semibold text-logo-gold mb-4">Sua Próxima Aventura Aguarda</h3>
             <p class="text-lg text-[#b3b3b3] mb-8 max-w-3xl">Na SD Viagens, criamos mais do que pacotes, criamos memórias. Cada destino é escolhido a dedo e cada detalhe é planejado para oferecer uma experiência de luxo e total tranquilidade. De praias paradisíacas no Brasil a paisagens de tirar o fôlego no exterior, nosso objetivo é superar suas expectativas e transformar seus sonhos em realidade.</p>
             
-            <button onclick="showCategory('brazil')" class="bg-logo-gold text-gray-900 py-3 px-6 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
+            <button onclick="showSection('brazil-section')" class="bg-logo-gold text-gray-900 py-3 px-6 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
                 Explorar Destinos
             </button>
         </div>
         <!-- Coluna da Direita (Imagem) -->
-        <div class="mt-8 md:mt-0 md:w-1/2 rounded-xl overflow-hidden shadow-lg">
-            <!-- A imagem é carregada aqui usando a tag <img> -->
-            <img src="uploaded:pexels-vincent-ma-janssen-2827843.jpg-0e1e13ed-6f91-4abf-8f49-9df8985623df" alt="Moraine Lake - Moraine Lake com montanhas e floresta de pinheiros" class="w-full h-auto object-cover">
+        <!-- O contêiner agora tem uma altura definida para que a imagem possa preenchê-lo -->
+        <div class="mt-8 md:mt-0 md:w-1/2 h-[500px] rounded-xl overflow-hidden shadow-lg">
+            <!-- A imagem agora tem 'h-full' para preencher a altura do contêiner -->
+            <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-jaime-reimer-1376930-2662116_qp91bo" alt="Moraine Lake - Moraine Lake com montanhas e floresta de pinheiros" class="w-full h-full object-cover">
         </div>
     </section>
 
@@ -152,41 +178,61 @@
       <div class="md:col-span-3 text-center">
           <h2 class="text-4xl font-bold text-logo-gold my-8">Destinos no Brasil</h2>
       </div>
-      <!-- Card Rio de Janeiro - Adicionado evento de clique para abrir o modal -->
-      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('rio')">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Praia do Rio de Janeiro com o Pão de Açúcar ao fundo" class="w-full h-48 object-cover">
+      <!-- Card Rio de Janeiro - Corrigido para chamar a função de contato -->
+      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Rio de Janeiro', 'Descubra o Rio de Janeiro, onde a energia pulsante da metrópole encontra a beleza natural de praias lendárias e a imponência do Cristo Redentor. Uma experiência vibrante e inesquecível.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755541736/303_-_No_topo_do_Rio_Rio_de_Janeiro_-_Brasil_ujmwjm.mov')">
+        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-bertellifotografia-2868242_iu64es" alt="Praia do Rio de Janeiro com o Pão de Açúcar ao fundo" class="w-full h-48 object-cover">
         <div class="p-6">
           <h3 class="text-2xl font-semibold text-logo-gold mb-2">Rio de Janeiro</h3>
           <p class="leading-relaxed">Sinta a energia contagiante da Cidade Maravilhosa, explore praias icônicas e suba ao Cristo Redentor para uma vista inesquecível.</p>
-          <div class="mt-4 rounded-lg overflow-hidden aspect-video">
-            <iframe src="https://www.youtube.com/embed/ZjFzkhrqIZs" class="w-full h-full" allowfullscreen></iframe>
-          </div>
         </div>
       </div>
 
       <!-- Card Amazônia -->
-      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
-        <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29" alt="Floresta exuberante na Amazônia" class="w-full h-48 object-cover">
+      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Amazônia', 'A maior floresta tropical do mundo te convida para uma jornada de descoberta. Explore a biodiversidade única, navegue por rios misteriosos e mergulhe em uma cultura ancestral.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543255/V%C3%ADdeo_sem_t%C3%ADtulo_Feito_com_o_Clipchamp_g4zyxi.mp4')">
+        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-bkd--30133825_afjl9d" alt="Floresta exuberante na Amazônia" class="w-full h-48 object-cover">
         <div class="p-6">
           <h3 class="text-2xl font-semibold text-logo-gold mb-2">Amazônia</h3>
           <p class="leading-relaxed">Conecte-se com a natureza na maior floresta tropical do planeta. Uma experiência única de biodiversidade e cultura local.</p>
-          <div class="mt-4 rounded-lg overflow-hidden aspect-video">
-            <iframe src="https://www.youtube.com/embed/BQ0mxQXmLsk" class="w-full h-full" allowfullscreen></iframe>
-          </div>
         </div>
       </div>
 
-      <!-- Card Salvador -->
-      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
-        <img src="https://images.unsplash.com/photo-1585675100414-dca84c228e30" alt="Casas coloridas do Pelourinho em Salvador" class="w-full h-48 object-cover">
+      <!-- Card Salvador - URL do vídeo atualizada -->
+      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Salvador', 'Salvador é a alma do Brasil, onde a história colonial se encontra com a cultura afro-brasileira. Percorra as ruas coloridas do Pelourinho, sinta a alegria dos ritmos locais e saboreie a culinária que encanta.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543420/17696122-uhd_3840_2160_30fps_uegfpx.mp4')">
+        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-braujardim-30495351_ie7aso" alt="Casas coloridas do Pelourinho em Salvador" class="w-full h-48 object-cover">
         <div class="p-6">
           <h3 class="text-2xl font-semibold text-logo-gold mb-2">Salvador</h3>
           <p class="leading-relaxed">Mergulhe na rica história e vibrante cultura de Salvador, a terra da alegria. Sabores, ritmos e cores que encantam a alma.</p>
-          <div class="mt-4 rounded-lg overflow-hidden aspect-video">
-            <iframe src="https://www.youtube.com/embed/m5oMmcQy4aY" class="w-full h-full" allowfullscreen></iframe>
-          </div>
         </div>
       </div>
+      
+      <!-- Novo Card Fernando de Noronha -->
+      <!-- O URL do vídeo foi atualizado para um arquivo .mp4 -->
+      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Fernando de Noronha', 'Um santuário ecológico no meio do Atlântico. Suas praias de areia dourada e vida marinha exuberante fazem deste um destino de mergulho incomparável. Exclusividade e beleza natural em um só lugar.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543667/233_-_Um_parai%CC%81so_chamado_Fernando_de_Noronha_Fernando_de_Noronha_-_Brasil_klnye4.mp4')">
+        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-evandro-kluge-201796092-12271415_bqvqcr" alt="Praia em Fernando de Noronha com rochas e mar cristalino" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-logo-gold mb-2">Fernando de Noronha</h3>
+          <p class="leading-relaxed">Um paraíso ecológico com praias intocadas e vida marinha exuberante. Perfeito para mergulho e contato com a natureza.</p>
+        </div>
+      </div>
+
+      <!-- Novo Card Foz do Iguaçu - Agora usando o novo video .mov -->
+      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Foz do Iguaçu', 'As Cataratas do Iguaçu são uma das maiores maravilhas naturais do planeta. Sinta a força e o som da água, explore a floresta circundante e testemunhe um espetáculo de pura grandiosidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755541262/302_-_A_Beleza_das_quedas_Cataratas_do_Igua%C3%A7u_-_Brasil_xdfo4c.mov')">
+        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-tatianeherder-2851515_beb4uv" alt="Cataratas do Iguaçu com arco-íris" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-logo-gold mb-2">Foz do Iguaçu</h3>
+          <p class="leading-relaxed">Testemunhe a força da natureza nas grandiosas Cataratas do Iguaçu. Um espetáculo de água e floresta que impressiona.</p>
+        </div>
+      </div>
+
+      <!-- Novo Card Gramado -->
+      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Gramado', 'Gramado é um refúgio europeu no sul do Brasil. Desfrute da arquitetura charmosa, do clima aconchegante e de uma gastronomia que celebra sabores de todo o mundo. Perfeito para relaxar.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543522/137_-_A_cidade_mais_bonita_no_Natal_Gramado_-_Brasil_ddymm2.mov')">
+        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/Gemini_Generated_Image_sd1xswsd1xswsd1x_c2ddf0" alt="Gramado coberta de neve ou geada" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-logo-gold mb-2">Gramado</h3>
+          <p class="leading-relaxed">Um pedacinho da Europa no Brasil. Com arquitetura charmosa, clima ameno e festivais de cinema e gastronomia.</p>
+        </div>
+      </div>
+
     </section>
 
     <!-- Seção de Destinos (Internacional) -->
@@ -197,25 +243,57 @@
             <h2 class="text-4xl font-bold text-logo-gold my-8">Destinos Internacionais</h2>
         </div>
         <!-- Card de exemplo - Paris -->
-        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
-            <img src="https://images.unsplash.com/photo-1502602898624-9b8162e7d7a5?q=80&w=2670&auto=format&fit=crop" alt="Torre Eiffel em Paris" class="w-full h-48 object-cover">
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Paris', 'Conheça a cidade-luz, o coração do romance e da arte. Sinta a história em cada rua, desfrute da gastronomia em charmosos bistrôs e se deslumbre com a grandiosidade da Torre Eiffel e do Louvre.', 'https://www.youtube.com/embed/Iq0s1BwL5W0')">
+            <img src="https://images.unsplash.com/photo-1502602898624-9b8162e7d7a5?q=80&w=2670&auto=format&fit-crop" alt="Torre Eiffel em Paris" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h3 class="text-2xl font-semibold text-logo-gold mb-2">Paris</h3>
                 <p class="leading-relaxed">A cidade-luz é um convite ao romance e à arte. Passeie pela Torre Eiffel, explore o Louvre e desfrute de cafés charmosos.</p>
             </div>
         </div>
         <!-- Card de exemplo - Tóquio -->
-        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
-            <img src="https://images.unsplash.com/photo-1503891450278-f19385d5395f?q=80&w=2670&auto=format&fit=crop" alt="Rua de Tóquio" class="w-full h-48 object-cover">
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Tóquio', 'Uma fusão única de tradição e futuro. Admire a serenidade dos templos antigos e mergulhe na energia caótica e tecnológica de bairros modernos. Tóquio é uma viagem para os sentidos.', 'https://www.youtube.com/embed/m8d-fLhS9Hk')">
+            <img src="https://images.unsplash.com/photo-1503891450278-f19385d5395f?q=80&w=2670&auto=format&fit-crop" alt="Rua de Tóquio" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h3 class="text-2xl font-semibold text-logo-gold mb-2">Tóquio</h3>
                 <p class="leading-relaxed">Uma metrópole fascinante que mistura tradição e modernidade. Explore templos antigos e a tecnologia futurista da capital japonesa.</p>
             </div>
         </div>
+        <!-- Novo Card - Roma -->
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Roma', 'Sinta a grandiosidade da história em cada esquina da Cidade Eterna. Caminhe pelos passos dos gladiadores no Coliseu, jogue uma moeda na Fontana di Trevi e desfrute da autêntica culinária italiana. ', 'https://www.youtube.com/embed/v8-vY-F_R-s')">
+            <img src="https://images.unsplash.com/photo-1582234033104-e366113b284e?q=80&w=2670&auto=format&fit-crop" alt="Coliseu em Roma ao pôr do sol" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h3 class="text-2xl font-semibold text-logo-gold mb-2">Roma</h3>
+                <p class="leading-relaxed">A cidade eterna. Viaje no tempo com a história do Coliseu, desfrute da gastronomia e da atmosfera vibrante das ruas italianas.</p>
+            </div>
+        </div>
+        <!-- Novo Card - Santorini -->
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Santorini', 'Um refúgio de tirar o fôlego, com suas icónicas casas brancas e cúpulas azuis que se debruçam sobre o mar Egeu. Ideal para casais, é o cenário perfeito para um pôr do sol inesquecível e momentos de pura tranquilidade.', 'https://www.youtube.com/embed/Xq4j1bB4H0U')">
+            <img src="https://images.unsplash.com/photo-1534246830508-257a7d424b91?q=80&w=2670&auto=format&fit-crop" alt="Vila de Santorini com casas brancas e cúpulas azuis" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h3 class="text-2xl font-semibold text-logo-gold mb-2">Santorini</h3>
+                <p class="leading-relaxed">O cenário de cartão-postal com casas brancas, cúpulas azuis e o pôr do sol mais espetacular da Grécia. Um refúgio romântico.</p>
+            </div>
+        </div>
+        <!-- Novo Card - Nova York -->
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Nova York', 'A cidade que nunca dorme oferece uma experiência sem igual. Sinta a energia de Manhattan, encontre a paz no Central Park e descubra a arte e a cultura de classe mundial em cada esquina. Uma aventura urbana completa.', 'https://www.youtube.com/embed/sL6c3P_t3uE')">
+            <img src="https://images.unsplash.com/photo-1509015024765-b169569424e0?q=80&w=2670&auto=format&fit-crop" alt="Manhattan skyline com arranha-céus à noite" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h3 class="text-2xl font-semibold text-logo-gold mb-2">Nova York</h3>
+                <p class="leading-relaxed">A cidade que nunca dorme. Explore a energia da Times Square, a tranquilidade do Central Park e a arte dos seus museus.</p>
+            </div>
+        </div>
+        <!-- Novo Card - Maldivas -->
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Maldivas', 'O auge do luxo e do relaxamento. Desfrute de bangalôs sobre águas turquesa, praias de areia branca imaculada e mergulhe em um universo de vida marinha vibrante. O paraíso na Terra.', 'https://www.youtube.com/embed/19dG8Wc1aQ8')">
+            <img src="https://images.unsplash.com/photo-1549448099-b1d7d07d12f4?q=80&w=2670&auto=format&fit-crop" alt="Villas sobre a água em um resort nas Maldivas" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h3 class="text-2xl font-semibold text-logo-gold mb-2">Maldivas</h3>
+                <p class="leading-relaxed">Um refúgio de praias de areia branca, águas cristalinas e bangalôs sobre a água. O destino perfeito para relaxar.</p>
+            </div>
+        </div>
     </section>
 
     <!-- Seção do Formulário -->
-    <section class="bg-[#262626] rounded-xl shadow-lg p-8 mt-12 max-w-2xl mx-auto">
+    <section id="contact-form-section" class="bg-[#262626] rounded-xl shadow-lg p-8 mt-12 max-w-2xl mx-auto hidden">
       <h2 class="text-3xl font-bold text-center text-logo-gold mb-6">Sua Próxima Aventura Aguarda...</h2>
       <p class="text-center text-[#b3b3b3] mb-6">Receba as melhores ofertas e dicas exclusivas de viagens diretamente na sua caixa de entrada!</p>
       
@@ -238,7 +316,7 @@
         
         <div>
           <label for="mensagem" class="block text-sm font-medium text-[#b3b3b3] mb-1">Mensagem (Opcional)</label>
-          <textarea id="mensagem" name="mensagem" rows="4" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]"></textarea>
+          <textarea id="message-input" name="mensagem" rows="4" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]"></textarea>
         </div>
         
         <button type="submit" class="w-full bg-logo-gold text-gray-900 py-3 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
@@ -246,47 +324,158 @@
         </button>
       </form>
     </section>
+
   </main>
+
+  <!-- Modal para exibir detalhes do destino -->
+  <div id="destination-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title" class="text-3xl font-bold text-center text-logo-gold mb-4"></h2>
+      <p id="modal-description" class="text-center text-[#b3b3b3] mb-6"></p>
+      <!-- Div para o vídeo que será adicionado via JavaScript -->
+      <div id="modal-video-container" class="mt-4 rounded-lg overflow-hidden aspect-video"></div>
+      <button id="modal-reserve-button" class="w-full bg-logo-gold text-gray-900 py-3 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300 mt-6">
+        Reservar
+      </button>
+    </div>
+  </div>
+
+  <!-- Mensagem de sucesso (adicionada para feedback visual) -->
+  <div id="success-message" class="hidden">Formulário preenchido com sucesso!</div>
 
   <!-- Footer -->
   <footer class="bg-[#121212] text-gray-400 text-center py-4 mt-8">
     <p>&copy; 2025 SD Viagens. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Modal do Rio de Janeiro -->
-  <div id="rio-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-button" onclick="closeModal('rio')">&times;</span>
-      <h2 class="text-3xl font-bold text-logo-gold mb-4">Rio de Janeiro: A Cidade Maravilhosa</h2>
-      <p class="text-white mb-4">O Rio de Janeiro é muito mais que praias e cartões postais. É a energia de Copacabana e Ipanema, o pôr do sol no Arpoador, a vista deslumbrante do Pão de Açúcar e a fé do Cristo Redentor. Uma cidade que mistura natureza exuberante com a vida urbana em uma harmonia única. Viva a experiência de uma das cidades mais icônicas do mundo!</p>
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Praia do Rio de Janeiro com o Pão de Açúcar ao fundo" class="w-full h-64 object-cover rounded-lg">
-    </div>
-  </div>
-
   <script>
-    // Função para abrir o modal
-    function openModal(id) {
-      document.getElementById(`${id}-modal`).style.display = 'flex';
-    }
+    // Acessa os elementos SVG via ID
+    const tracedPath = document.getElementById('traced-path');
+    const pathLength = tracedPath.getTotalLength(); // Calcula o comprimento total do caminho
 
-    // Função para fechar o modal
-    function closeModal(id) {
-      document.getElementById(`${id}-modal`).style.display = 'none';
-    }
+    // Sincroniza o offset inicial do caminho tracejado
+    tracedPath.style.strokeDasharray = pathLength;
+    tracedPath.style.strokeDashoffset = pathLength;
 
-    // Lógica para mostrar a seção de categoria
-    function showCategory(category) {
+    // Define a duração da animação para sincronizar os dois
+    const animationDuration = '10s';
+
+    // Cria a animação para o traçado do caminho
+    const dashAnimation = tracedPath.animate([
+      { strokeDashoffset: pathLength },
+      { strokeDashoffset: 0 }
+    ], {
+      duration: parseFloat(animationDuration) * 1000,
+      iterations: Infinity,
+      easing: 'linear'
+    });
+
+    // Função genérica para mostrar a seção com um determinado ID
+    function showSection(sectionId) {
       const allSections = document.querySelectorAll('main section');
       allSections.forEach(section => {
+        section.classList.add('hidden');
         section.style.display = 'none';
       });
 
-      document.getElementById(`${category}-section`).style.display = 'grid';
-
-      // A seção de Home não usa grid, então ajustamos o display para 'flex'
-      if (category === 'home') {
-          document.getElementById('home-section').style.display = 'flex';
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        // A seção de Home usa flex, as outras usam grid
+        if (sectionId === 'home-section') {
+            targetSection.classList.remove('hidden');
+            targetSection.style.display = 'flex';
+        } else {
+            targetSection.classList.remove('hidden');
+            targetSection.style.display = 'grid';
+        }
       }
+    }
+    
+    // Função para direcionar para o formulário e pré-preencher a mensagem
+    function goToContactForm(destinationName) {
+      // Primeiro, garante que a seção do formulário esteja visível
+      showSection('contact-form-section');
+
+      // Agora, pode rolar para ela e interagir com os elementos
+      const contactFormSection = document.getElementById('contact-form-section');
+      const messageInput = document.getElementById('message-input');
+      const successMessage = document.getElementById('success-message');
+      
+      // Rola suavemente até a seção do formulário
+      contactFormSection.scrollIntoView({ behavior: 'smooth' });
+
+      // Pré-preenche o campo de mensagem
+      messageInput.value = `Quero reservar uma viagem para ${destinationName}.`;
+      
+      // Foca no campo para facilitar a digitação
+      messageInput.focus();
+
+      // Mostra a mensagem de sucesso
+      successMessage.style.opacity = '1';
+      successMessage.style.display = 'block';
+
+      // Esconde a mensagem de sucesso após 3 segundos
+      setTimeout(() => {
+        successMessage.style.opacity = '0';
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 500); // Aguarda o fim da transição
+      }, 3000);
+    }
+
+    // Função para abrir a modal com os detalhes do destino e o vídeo
+    function openModal(destinationName, destinationDescription, videoUrl) {
+        const modal = document.getElementById('destination-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalReserveButton = document.getElementById('modal-reserve-button');
+        const videoContainer = document.getElementById('modal-video-container');
+
+        // Preenche o conteúdo da modal
+        modalTitle.textContent = destinationName;
+        modalDescription.textContent = destinationDescription;
+        
+        // Limpa o contêiner do vídeo antes de adicionar um novo
+        videoContainer.innerHTML = '';
+        
+        let videoElement;
+        // Verifica se o URL do vídeo é um arquivo de vídeo (por exemplo, .mp4, .mov, etc.)
+        if (videoUrl.endsWith('.mp4') || videoUrl.endsWith('.webm') || videoUrl.endsWith('.ogg') || videoUrl.endsWith('.mov')) {
+            videoElement = document.createElement('video');
+            videoElement.src = videoUrl;
+            videoElement.controls = true; // Adiciona controles de player
+        } else {
+            // Se não for um arquivo, assume que é um link do YouTube e usa iframe
+            videoElement = document.createElement('iframe');
+            videoElement.src = videoUrl;
+            videoElement.allowFullscreen = true;
+        }
+
+        // Define a classe para o elemento de vídeo
+        videoElement.className = 'w-full h-full';
+        
+        // Adiciona o elemento de vídeo ao contêiner
+        videoContainer.appendChild(videoElement);
+
+        // Define o evento de clique do botão de reserva
+        modalReserveButton.onclick = function() {
+            closeModal();
+            goToContactForm(destinationName);
+        };
+
+        // Exibe a modal
+        modal.style.display = 'flex';
+    }
+
+    // Função para fechar a modal
+    function closeModal() {
+      const modal = document.getElementById('destination-modal');
+      const videoContainer = document.getElementById('modal-video-container');
+
+      // Remove o iframe do vídeo ao fechar a modal
+      videoContainer.innerHTML = '';
+      modal.style.display = 'none';
     }
 
     // Lógica para o menu mobile
@@ -299,7 +488,7 @@
 
     // Exibir a categoria Home por padrão ao carregar a página
     window.onload = function() {
-      showCategory('home');
+      showSection('home-section');
     };
   </script>
 
