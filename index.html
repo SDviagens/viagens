@@ -24,12 +24,6 @@
     .formulario button:hover { background: #00b4d8; }
     footer { background-color: #0077b6; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
   </style>
-  <script>
-    // Script para permitir visualização no Canvas Preview
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('Página pronta para pré-visualização');
-    });
-  </script>
 </head>
 <body>
   <header>
@@ -69,6 +63,7 @@
 
     <section class="formulario">
       <h2>Cadastre-se para novidades</h2>
+      <!-- Formulário conectado via FormSubmit -->
       <form action="https://formsubmit.co/seuemail@dominio.com" method="POST">
         <label for="nome">Nome</label>
         <input type="text" id="nome" name="nome" required>
