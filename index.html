@@ -9,10 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      /* Estilo da fonte para o corpo do site */
       font-family: 'Playfair Display', serif;
-      background-color: #1a1a1a; /* Fundo cinza escuro para um look mais suave */
-      color: #b3b3b3; /* Cor do texto levemente acinzentada para melhor leitura */
+      background-color: #1a1a1a;
+      color: #b3b3b3;
     }
     .header-banner {
       background-image: url('https://images.unsplash.com/photo-1502444330042-33821774f176?q=80&w=2670&auto=format&fit=crop');
@@ -21,7 +20,7 @@
       position: relative;
     }
     .header-overlay {
-      background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro para melhorar a legibilidade do texto */
+      background-color: rgba(0, 0, 0, 0.5);
     }
     .card {
       transition: transform 0.3s, box-shadow 0.3s;
@@ -30,7 +29,14 @@
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 18px rgba(0,0,0,0.5);
-      border: 1px solid #D4AF37; /* Borda dourada ao passar o mouse */
+      border: 1px solid #C0A05D; /* Cor dourada da logo ao passar o mouse */
+    }
+    /* Estilo para a cor exata do logo */
+    .text-logo-gold {
+      color: #C0A05D;
+    }
+    .bg-logo-gold {
+      background-color: #C0A05D;
     }
   </style>
 </head>
@@ -41,17 +47,17 @@
     <div class="header-overlay p-6 md:p-10">
       <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div class="flex items-center space-x-4">
-          <!-- Logo SD Viagens -->
-          <img src="uploaded:image_f6790c.png-d4164f9d-02fd-4fa6-ba36-89e8693e3a8a" alt="SD Viagens Logo" class="h-16 w-auto">
-          <h1 class="text-4xl font-bold text-[#D4AF37]">SD Viagens</h1>
+          <!-- Logo SD Viagens - Atualizada com a nova imagem -->
+          <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/f_png/imagem_2025-08-18_005838677_ijxuzc" alt="SD Viagens Logo" class="h-16 w-auto">
+          <h1 class="text-4xl font-bold text-logo-gold">SD Viagens</h1>
         </div>
-        <p class="mt-2 md:mt-0 text-lg md:text-xl text-center text-[#D4AF37]">Experiências de Luxo no Brasil</p>
+        <p class="mt-2 md:mt-0 text-lg md:text-xl text-center text-logo-gold">Experiências de Luxo no Brasil</p>
       </div>
     </div>
   </header>
 
   <main class="container mx-auto p-4 md:p-8">
-    <h2 class="text-4xl font-bold text-center text-[#D4AF37] my-8">Descubra Destinos Incríveis</h2>
+    <h2 class="text-4xl font-bold text-center text-logo-gold my-8">Descubra Destinos Incríveis</h2>
     <!-- Seção de Destinos -->
     <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
@@ -59,7 +65,7 @@
       <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Praia do Rio de Janeiro com o Pão de Açúcar ao fundo" class="w-full h-48 object-cover">
         <div class="p-6">
-          <h3 class="text-2xl font-semibold text-[#D4AF37] mb-2">Rio de Janeiro</h3>
+          <h3 class="text-2xl font-semibold text-logo-gold mb-2">Rio de Janeiro</h3>
           <p class="leading-relaxed">Sinta a energia contagiante da Cidade Maravilhosa, explore praias icônicas e suba ao Cristo Redentor para uma vista inesquecível.</p>
           <div class="mt-4 rounded-lg overflow-hidden aspect-video">
             <iframe src="https://www.youtube.com/embed/ZjFzkhrqIZs" class="w-full h-full" allowfullscreen></iframe>
@@ -71,7 +77,7 @@
       <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
         <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29" alt="Floresta exuberante na Amazônia" class="w-full h-48 object-cover">
         <div class="p-6">
-          <h3 class="text-2xl font-semibold text-[#D4AF37] mb-2">Amazônia</h3>
+          <h3 class="text-2xl font-semibold text-logo-gold mb-2">Amazônia</h3>
           <p class="leading-relaxed">Conecte-se com a natureza na maior floresta tropical do planeta. Uma experiência única de biodiversidade e cultura local.</p>
           <div class="mt-4 rounded-lg overflow-hidden aspect-video">
             <iframe src="https://www.youtube.com/embed/BQ0mxQXmLsk" class="w-full h-full" allowfullscreen></iframe>
@@ -83,7 +89,7 @@
       <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
         <img src="https://images.unsplash.com/photo-1585675100414-dca84c228e30" alt="Casas coloridas do Pelourinho em Salvador" class="w-full h-48 object-cover">
         <div class="p-6">
-          <h3 class="text-2xl font-semibold text-[#D4AF37] mb-2">Salvador</h3>
+          <h3 class="text-2xl font-semibold text-logo-gold mb-2">Salvador</h3>
           <p class="leading-relaxed">Mergulhe na rica história e vibrante cultura de Salvador, a terra da alegria. Sabores, ritmos e cores que encantam a alma.</p>
           <div class="mt-4 rounded-lg overflow-hidden aspect-video">
             <iframe src="https://www.youtube.com/embed/m5oMmcQy4aY" class="w-full h-full" allowfullscreen></iframe>
@@ -94,32 +100,32 @@
 
     <!-- Seção do Formulário -->
     <section class="bg-[#262626] rounded-xl shadow-lg p-8 mt-12 max-w-2xl mx-auto">
-      <h2 class="text-3xl font-bold text-center text-[#D4AF37] mb-6">Sua Próxima Aventura Aguarda...</h2>
+      <h2 class="text-3xl font-bold text-center text-logo-gold mb-6">Sua Próxima Aventura Aguarda...</h2>
       <p class="text-center text-[#b3b3b3] mb-6">Receba as melhores ofertas e dicas exclusivas de viagens diretamente na sua caixa de entrada!</p>
       
       <!-- Formulário com FormSubmit -->
       <form action="https://formsubmit.co/seuemail@dominio.com" method="POST" class="space-y-6">
         <div>
           <label for="nome" class="block text-sm font-medium text-[#b3b3b3] mb-1">Nome</label>
-          <input type="text" id="nome" name="nome" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-[#D4AF37] focus:border-[#D4AF37] text-[#e0e0e0]" required>
+          <input type="text" id="nome" name="nome" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
         </div>
         
         <div>
           <label for="email" class="block text-sm font-medium text-[#b3b3b3] mb-1">E-mail</label>
-          <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-[#D4AF37] focus:border-[#D4AF37] text-[#e0e0e0]" required>
+          <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
         </div>
 
         <div>
           <label for="telefone" class="block text-sm font-medium text-[#b3b3b3] mb-1">Telefone</label>
-          <input type="tel" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-[#D4AF37] focus:border-[#D4AF37] text-[#e0e0e0]" required>
+          <input type="tel" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
         </div>
         
         <div>
           <label for="mensagem" class="block text-sm font-medium text-[#b3b3b3] mb-1">Mensagem (Opcional)</label>
-          <textarea id="mensagem" name="mensagem" rows="4" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-[#D4AF37] focus:border-[#D4AF37] text-[#e0e0e0]"></textarea>
+          <textarea id="mensagem" name="mensagem" rows="4" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]"></textarea>
         </div>
         
-        <button type="submit" class="w-full bg-[#D4AF37] text-gray-900 py-3 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
+        <button type="submit" class="w-full bg-logo-gold text-gray-900 py-3 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
           Enviar Cadastro
         </button>
       </form>
