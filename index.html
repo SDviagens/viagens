@@ -14,6 +14,7 @@
       color: #b3b3b3;
     }
     .header-banner {
+      /* Imagem do banner principal foi restaurada para um URL genérico */
       background-image: url('https://images.unsplash.com/photo-1502444330042-33821774f176?q=80&w=2670&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
@@ -25,11 +26,12 @@
     .card {
       transition: transform 0.3s, box-shadow 0.3s;
       border: 1px solid transparent;
+      cursor: pointer;
     }
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 18px rgba(0,0,0,0.5);
-      border: 1px solid #C0A05D; /* Cor dourada da logo ao passar o mouse */
+      border: 1px solid #C0A05D;
     }
     /* Estilo para a cor exata do logo */
     .text-logo-gold {
@@ -38,31 +40,120 @@
     .bg-logo-gold {
       background-color: #C0A05D;
     }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 800px;
+      position: relative;
+    }
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #C0A05D;
+    }
+    .close-button:hover {
+      color: #FFD700;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #262626;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      top: 100%;
+      left: 0;
+    }
   </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#b3b3b3]">
 
-  <!-- Header - Com imagem de lago e texto dourado -->
+  <!-- Header - Com imagem de lago, navegação e texto dourado -->
   <header class="header-banner text-white p-6 shadow-lg">
     <div class="header-overlay p-6 md:p-10">
       <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div class="flex items-center space-x-4">
-          <!-- Logo SD Viagens - Atualizada com a nova imagem -->
-          <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/f_png/imagem_2025-08-18_005838677_ijxuzc" alt="SD Viagens Logo" class="h-16 w-auto">
+          <img src="uploaded:image_f6e244.png-d3091330-0b05-4e52-a3e9-8a8916cfef55" alt="SD Viagens Logo" class="h-12 w-auto">
           <h1 class="text-4xl font-bold text-logo-gold">SD Viagens</h1>
         </div>
         <p class="mt-2 md:mt-0 text-lg md:text-xl text-center text-logo-gold">Experiências de Luxo no Brasil</p>
+
+        <!-- Botão para menu mobile -->
+        <button id="menu-button" class="md:hidden text-logo-gold text-2xl mt-4">☰</button>
+
+        <!-- Menu de navegação -->
+        <nav id="main-menu" class="hidden md:flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 items-center">
+          <!-- Link para Home -->
+          <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300" onclick="showCategory('home')">Home</a>
+          
+          <!-- Dropdown para Destinos -->
+          <div class="relative dropdown">
+            <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300">Destinos</a>
+            <div class="dropdown-menu">
+              <!-- Links que ativam as categorias -->
+              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700" onclick="showCategory('brazil')">Brasil</a>
+              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700" onclick="showCategory('international')">Internacional</a>
+            </div>
+          </div>
+          
+          <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300">Dicas de Viagem</a>
+        </nav>
       </div>
     </div>
   </header>
 
   <main class="container mx-auto p-4 md:p-8">
-    <h2 class="text-4xl font-bold text-center text-logo-gold my-8">Descubra Destinos Incríveis</h2>
-    <!-- Seção de Destinos -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-      <!-- Card Rio de Janeiro -->
-      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
+    <!-- Nova Seção Home - Agora com duas colunas -->
+    <section id="home-section" class="flex flex-col md:flex-row items-center justify-between py-12 hidden">
+        <!-- Coluna da Esquerda (Texto) -->
+        <div class="flex flex-col items-center text-center md:text-left md:items-start md:w-1/2 md:pr-8">
+            <h2 class="text-4xl font-bold text-logo-gold mb-4">Chegou a hora de descansar, não é mesmo?</h2>
+            <p class="text-xl text-[#b3b3b3] mb-8 max-w-2xl">Explore a nossa categoria e decida onde você quer estar!</p>
+            
+            <h3 class="text-2xl font-semibold text-logo-gold mb-4">Sua Próxima Aventura Aguarda</h3>
+            <p class="text-lg text-[#b3b3b3] mb-8 max-w-3xl">Na SD Viagens, criamos mais do que pacotes, criamos memórias. Cada destino é escolhido a dedo e cada detalhe é planejado para oferecer uma experiência de luxo e total tranquilidade. De praias paradisíacas no Brasil a paisagens de tirar o fôlego no exterior, nosso objetivo é superar suas expectativas e transformar seus sonhos em realidade.</p>
+            
+            <button onclick="showCategory('brazil')" class="bg-logo-gold text-gray-900 py-3 px-6 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
+                Explorar Destinos
+            </button>
+        </div>
+        <!-- Coluna da Direita (Imagem) -->
+        <div class="mt-8 md:mt-0 md:w-1/2 rounded-xl overflow-hidden shadow-lg">
+            <!-- A imagem é carregada aqui usando a tag <img> -->
+            <img src="uploaded:pexels-vincent-ma-janssen-2827843.jpg-0e1e13ed-6f91-4abf-8f49-9df8985623df" alt="Moraine Lake - Moraine Lake com montanhas e floresta de pinheiros" class="w-full h-auto object-cover">
+        </div>
+    </section>
+
+    <!-- Seção de Destinos (Brasil) -->
+    <section id="brazil-section" class="grid grid-cols-1 md:grid-cols-3 gap-8 hidden">
+      <!-- Título da Seção de Destinos -->
+      <div class="md:col-span-3 text-center">
+          <h2 class="text-4xl font-bold text-logo-gold my-8">Destinos no Brasil</h2>
+      </div>
+      <!-- Card Rio de Janeiro - Adicionado evento de clique para abrir o modal -->
+      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('rio')">
         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Praia do Rio de Janeiro com o Pão de Açúcar ao fundo" class="w-full h-48 object-cover">
         <div class="p-6">
           <h3 class="text-2xl font-semibold text-logo-gold mb-2">Rio de Janeiro</h3>
@@ -96,6 +187,31 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Seção de Destinos (Internacional) -->
+    <!-- Esta seção está oculta por padrão -->
+    <section id="international-section" class="grid grid-cols-1 md:grid-cols-3 gap-8 hidden">
+        <!-- Título da Seção de Destinos -->
+        <div class="md:col-span-3 text-center">
+            <h2 class="text-4xl font-bold text-logo-gold my-8">Destinos Internacionais</h2>
+        </div>
+        <!-- Card de exemplo - Paris -->
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
+            <img src="https://images.unsplash.com/photo-1502602898624-9b8162e7d7a5?q=80&w=2670&auto=format&fit=crop" alt="Torre Eiffel em Paris" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h3 class="text-2xl font-semibold text-logo-gold mb-2">Paris</h3>
+                <p class="leading-relaxed">A cidade-luz é um convite ao romance e à arte. Passeie pela Torre Eiffel, explore o Louvre e desfrute de cafés charmosos.</p>
+            </div>
+        </div>
+        <!-- Card de exemplo - Tóquio -->
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300">
+            <img src="https://images.unsplash.com/photo-1503891450278-f19385d5395f?q=80&w=2670&auto=format&fit=crop" alt="Rua de Tóquio" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h3 class="text-2xl font-semibold text-logo-gold mb-2">Tóquio</h3>
+                <p class="leading-relaxed">Uma metrópole fascinante que mistura tradição e modernidade. Explore templos antigos e a tecnologia futurista da capital japonesa.</p>
+            </div>
+        </div>
     </section>
 
     <!-- Seção do Formulário -->
@@ -136,6 +252,56 @@
   <footer class="bg-[#121212] text-gray-400 text-center py-4 mt-8">
     <p>&copy; 2025 SD Viagens. Todos os direitos reservados.</p>
   </footer>
+
+  <!-- Modal do Rio de Janeiro -->
+  <div id="rio-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal('rio')">&times;</span>
+      <h2 class="text-3xl font-bold text-logo-gold mb-4">Rio de Janeiro: A Cidade Maravilhosa</h2>
+      <p class="text-white mb-4">O Rio de Janeiro é muito mais que praias e cartões postais. É a energia de Copacabana e Ipanema, o pôr do sol no Arpoador, a vista deslumbrante do Pão de Açúcar e a fé do Cristo Redentor. Uma cidade que mistura natureza exuberante com a vida urbana em uma harmonia única. Viva a experiência de uma das cidades mais icônicas do mundo!</p>
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Praia do Rio de Janeiro com o Pão de Açúcar ao fundo" class="w-full h-64 object-cover rounded-lg">
+    </div>
+  </div>
+
+  <script>
+    // Função para abrir o modal
+    function openModal(id) {
+      document.getElementById(`${id}-modal`).style.display = 'flex';
+    }
+
+    // Função para fechar o modal
+    function closeModal(id) {
+      document.getElementById(`${id}-modal`).style.display = 'none';
+    }
+
+    // Lógica para mostrar a seção de categoria
+    function showCategory(category) {
+      const allSections = document.querySelectorAll('main section');
+      allSections.forEach(section => {
+        section.style.display = 'none';
+      });
+
+      document.getElementById(`${category}-section`).style.display = 'grid';
+
+      // A seção de Home não usa grid, então ajustamos o display para 'flex'
+      if (category === 'home') {
+          document.getElementById('home-section').style.display = 'flex';
+      }
+    }
+
+    // Lógica para o menu mobile
+    document.getElementById('menu-button').addEventListener('click', () => {
+      const menu = document.getElementById('main-menu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      menu.classList.toggle('flex-col');
+    });
+
+    // Exibir a categoria Home por padrão ao carregar a página
+    window.onload = function() {
+      showCategory('home');
+    };
+  </script>
 
 </body>
 </html>
