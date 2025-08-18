@@ -72,19 +72,34 @@
         .close-button:hover {
             color: #FFD700;
         }
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
+        /* Ajuste do dropdown para mobile-first */
         .dropdown-menu {
             display: none;
-            position: absolute;
-            background-color: #262626;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            top: 100%;
-            left: 0;
+            position: static; /* Ajusta para layout de fluxo normal em mobile */
+            background-color: transparent; /* Remove o fundo */
+            box-shadow: none; /* Remove a sombra */
+            z-index: auto;
+            min-width: unset;
         }
+        .dropdown.open .dropdown-menu {
+            display: block;
+        }
+        /* Ajuste para telas maiores, onde o dropdown deve se comportar como antes */
+        @media (min-width: 768px) {
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+            .dropdown-menu {
+                position: absolute;
+                background-color: #262626;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                top: 100%;
+                left: 0;
+            }
+        }
+        
         /* Estilo para a mensagem de sucesso */
         #success-message {
             position: fixed;
@@ -205,11 +220,12 @@
                 <!-- Menu de navegação -->
                 <nav id="main-menu" class="hidden md:flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 items-center">
                     <!-- Link para Home -->
-                    <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300" onclick="showSection('home-section')">Home</a>
+                    <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0" onclick="showSection('home-section')">Home</a>
                     
                     <!-- Dropdown para Destinos -->
                     <div class="relative dropdown">
-                        <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300">Destinos</a>
+                        <!-- Adicionei um ID e um onclick para gerenciar o estado do dropdown no mobile -->
+                        <a href="#" id="destinos-link" class="text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0">Destinos</a>
                         <div class="dropdown-menu">
                             <!-- Links que ativam as categorias -->
                             <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700" onclick="showSection('brazil-section')">Brasil</a>
@@ -217,7 +233,7 @@
                         </div>
                     </div>
                     
-                    <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300">Dicas de Viagem</a>
+                    <a href="#" class="text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0">Dicas de Viagem</a>
                 </nav>
             </div>
         </div>
@@ -228,7 +244,7 @@
         <!-- Nova Seção Home - Agora com duas colunas -->
         <section id="home-section" class="flex flex-col md:flex-row items-center justify-between py-12 hidden">
             <!-- Coluna da Esquerda (Texto) -->
-            <div class="flex flex-col items-center text-center md:text-left md:items-start md:w-1/2 md:pr-8">
+            <div class="flex flex-col items-center text-center md:text-left md:items-start w-full md:w-1/2 md:pr-8 mb-8 md:mb-0">
                 <h2 class="text-4xl font-bold text-logo-gold mb-4">Chegou a hora de descansar, não é mesmo?</h2>
                 <p class="text-xl text-[#b3b3b3] mb-8 max-w-2xl">Explore a nossa categoria e decida onde você quer estar!</p>
                 
@@ -241,7 +257,7 @@
             </div>
             
             <!-- Coluna da Direita (Carrossel) -->
-            <div class="mt-8 md:mt-0 md:w-1/2">
+            <div class="w-full md:w-1/2">
                 <!-- Contêiner principal do carrossel -->
                 <div id="carousel-container" class="carousel-container">
                     <!-- Contêiner interno das imagens -->
@@ -323,7 +339,7 @@
             </div>
 
             <!-- Novo Card Foz do Iguaçu - Agora usando o novo video .mov -->
-            <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Foz do Iguaçu', 'As Cataratas do Iguaçu são uma das maiores maravilhas naturais do planeta. Sinta a força e o som da água, explore a floresta circundante e testemunhe um espetáculo de pura grandiosidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755544230/302_-_A_Beleza_das_quedas_Cataratas_do_Igua%C3%A7u_-_Brasil_mtgujx.mov')">
+            <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Foz do Iguaçu', 'As Cataratas do Iguaçu são uma das maiores maravilhas naturais do planeta. Sinta a força e o som da água, explore a floresta circundante e testemunhe um espetáculo de pura grandiosidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755544230/302_-_A_Beleza_das_quedas_Cataratas_do_Igua%C3%A7u_Foz_do_Igua%C3%A7u_-_Brasil_mtgujx.mov')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-tatianeherder-2851515_beb4uv" alt="Cataratas do Iguaçu com arco-íris" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-2xl font-semibold text-logo-gold mb-2">Foz do Iguaçu</h3>
@@ -619,6 +635,16 @@
                 menu.classList.toggle('hidden');
                 menu.classList.toggle('flex');
                 menu.classList.toggle('flex-col');
+            });
+
+            // Lógica para o dropdown 'Destinos' no mobile
+            document.getElementById('destinos-link').addEventListener('click', (e) => {
+                // Previne a navegação se estiver em mobile
+                if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    const dropdown = e.currentTarget.closest('.dropdown');
+                    dropdown.classList.toggle('open');
+                }
             });
             
             // --- Lógica do Carrossel ---
