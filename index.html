@@ -99,6 +99,10 @@
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
     }
+    /* Estilo adicional para os inputs de data, para que se encaixem melhor no design escuro */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+    }
   </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#b3b3b3]">
@@ -216,7 +220,7 @@
       </div>
 
       <!-- Novo Card Foz do Iguaçu - Agora usando o novo video .mov -->
-      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Foz do Iguaçu', 'As Cataratas do Iguaçu são uma das maiores maravilhas naturais do planeta. Sinta a força e o som da água, explore a floresta circundante e testemunhe um espetáculo de pura grandiosidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755541262/302_-_A_Beleza_das_quedas_Cataratas_do_Igua%C3%A7u_-_Brasil_xdfo4c.mov')">
+      <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Foz do Iguaçu', 'As Cataratas do Iguaçu são uma das maiores maravilhas naturais do planeta. Sinta a força e o som da água, explore a floresta circundante e testemunhe um espetáculo de pura grandiosidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755544230/302_-_A_Beleza_das_quedas_Cataratas_do_Igua%C3%A7u_-_Brasil_mtgujx.mov')">
         <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-tatianeherder-2851515_beb4uv" alt="Cataratas do Iguaçu com arco-íris" class="w-full h-48 object-cover">
         <div class="p-6">
           <h3 class="text-2xl font-semibold text-logo-gold mb-2">Foz do Iguaçu</h3>
@@ -243,48 +247,48 @@
             <h2 class="text-4xl font-bold text-logo-gold my-8">Destinos Internacionais</h2>
         </div>
         <!-- Card de exemplo - Paris -->
-        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Paris', 'Conheça a cidade-luz, o coração do romance e da arte. Sinta a história em cada rua, desfrute da gastronomia em charmosos bistrôs e se deslumbre com a grandiosidade da Torre Eiffel e do Louvre.', 'https://www.youtube.com/embed/Iq0s1BwL5W0')">
-            <img src="https://images.unsplash.com/photo-1502602898624-9b8162e7d7a5?q=80&w=2670&auto=format&fit-crop" alt="Torre Eiffel em Paris" class="w-full h-48 object-cover">
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Paris', 'Conheça a cidade-luz, o coração do romance e da arte. Sinta a história em cada rua, desfrute da gastronomia em charmosos bistrôs e se deslumbre com a grandiosidade da Torre Eiffel e do Louvre.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545000/112_-_Paris_Fran%C3%A7a_yzcape.mp4')">
+            <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-hammyx-941416_lecniz" alt="Torre Eiffel em Paris" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h3 class="text-2xl font-semibold text-logo-gold mb-2">Paris</h3>
                 <p class="leading-relaxed">A cidade-luz é um convite ao romance e à arte. Passeie pela Torre Eiffel, explore o Louvre e desfrute de cafés charmosos.</p>
             </div>
         </div>
         <!-- Card de exemplo - Tóquio -->
-        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Tóquio', 'Uma fusão única de tradição e futuro. Admire a serenidade dos templos antigos e mergulhe na energia caótica e tecnológica de bairros modernos. Tóquio é uma viagem para os sentidos.', 'https://www.youtube.com/embed/m8d-fLhS9Hk')">
-            <img src="https://images.unsplash.com/photo-1503891450278-f19385d5395f?q=80&w=2670&auto=format&fit-crop" alt="Rua de Tóquio" class="w-full h-48 object-cover">
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Tóquio', 'Uma fusão única de tradição e futuro. Admire a serenidade dos templos antigos e mergulhe na energia caótica e tecnológica de bairros modernos. Tóquio é uma viagem para os sentidos.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545880/100-As-belezas-de-To%CC%81quio_-To%CC%81quio-Japa%CC%83o_dvjeew.mp4')">
+            <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-apasaric-2506923_gzarqk" alt="Rua de Tóquio" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h3 class="text-2xl font-semibold text-logo-gold mb-2">Tóquio</h3>
                 <p class="leading-relaxed">Uma metrópole fascinante que mistura tradição e modernidade. Explore templos antigos e a tecnologia futurista da capital japonesa.</p>
             </div>
         </div>
         <!-- Novo Card - Roma -->
-        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Roma', 'Sinta a grandiosidade da história em cada esquina da Cidade Eterna. Caminhe pelos passos dos gladiadores no Coliseu, jogue uma moeda na Fontana di Trevi e desfrute da autêntica culinária italiana. ', 'https://www.youtube.com/embed/v8-vY-F_R-s')">
-            <img src="https://images.unsplash.com/photo-1582234033104-e366113b284e?q=80&w=2670&auto=format&fit-crop" alt="Coliseu em Roma ao pôr do sol" class="w-full h-48 object-cover">
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Roma', 'Sinta a grandiosidade da história em cada esquina da Cidade Eterna. Caminhe pelos passos dos gladiadores no Coliseu, jogue uma moeda na Fontana di Trevi e desfrute da autêntica culinária italiana. ', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755546200/V%C3%ADdeo_sem_t%C3%ADtulo_Feito_com_o_Clipchamp_1_pqjfef.mp4')">
+            <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-regan-dsouza-1315522347-33420260_h9fdn0" alt="Coliseu em Roma ao pôr do sol" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h3 class="text-2xl font-semibold text-logo-gold mb-2">Roma</h3>
                 <p class="leading-relaxed">A cidade eterna. Viaje no tempo com a história do Coliseu, desfrute da gastronomia e da atmosfera vibrante das ruas italianas.</p>
             </div>
         </div>
         <!-- Novo Card - Santorini -->
-        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Santorini', 'Um refúgio de tirar o fôlego, com suas icónicas casas brancas e cúpulas azuis que se debruçam sobre o mar Egeu. Ideal para casais, é o cenário perfeito para um pôr do sol inesquecível e momentos de pura tranquilidade.', 'https://www.youtube.com/embed/Xq4j1bB4H0U')">
-            <img src="https://images.unsplash.com/photo-1534246830508-257a7d424b91?q=80&w=2670&auto=format&fit-crop" alt="Vila de Santorini com casas brancas e cúpulas azuis" class="w-full h-48 object-cover">
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Santorini', 'Um refúgio de tirar o fôlego, com suas icónicas casas brancas e cúpulas azuis que se debruçam sobre o mar Egeu. Ideal para casais, é o cenário perfeito para um pôr do sol inesquecível e momentos de pura tranquilidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545005/108_-_Santorini_Gr%C3%A9cia_gdgrq1.mp4')">
+            <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-pixabay-161815_tl4ixf" alt="Vila de Santorini com casas brancas e cúpulas azuis" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h3 class="text-2xl font-semibold text-logo-gold mb-2">Santorini</h3>
                 <p class="leading-relaxed">O cenário de cartão-postal com casas brancas, cúpulas azuis e o pôr do sol mais espetacular da Grécia. Um refúgio romântico.</p>
             </div>
         </div>
         <!-- Novo Card - Nova York -->
-        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Nova York', 'A cidade que nunca dorme oferece uma experiência sem igual. Sinta a energia de Manhattan, encontre a paz no Central Park e descubra a arte e a cultura de classe mundial em cada esquina. Uma aventura urbana completa.', 'https://www.youtube.com/embed/sL6c3P_t3uE')">
-            <img src="https://images.unsplash.com/photo-1509015024765-b169569424e0?q=80&w=2670&auto=format&fit-crop" alt="Manhattan skyline com arranha-céus à noite" class="w-full h-48 object-cover">
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Nova York', 'A cidade que nunca dorme oferece uma experiência sem igual. Sinta a energia de Manhattan, encontre a paz no Central Park e descubra a arte e a cultura de classe mundial em cada esquina. Uma aventura urbana completa.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545003/246_-_Estatua_da_Liberdade_New_York_-_Estados_Unidos_z7sbsu.mov')">
+            <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-st-supreme-2148276282-33435991_mb0bkj" alt="Manhattan skyline com arranha-céus à noite" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h3 class="text-2xl font-semibold text-logo-gold mb-2">Nova York</h3>
                 <p class="leading-relaxed">A cidade que nunca dorme. Explore a energia da Times Square, a tranquilidade do Central Park e a arte dos seus museus.</p>
             </div>
         </div>
         <!-- Novo Card - Maldivas -->
-        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Maldivas', 'O auge do luxo e do relaxamento. Desfrute de bangalôs sobre águas turquesa, praias de areia branca imaculada e mergulhe em um universo de vida marinha vibrante. O paraíso na Terra.', 'https://www.youtube.com/embed/19dG8Wc1aQ8')">
-            <img src="https://images.unsplash.com/photo-1549448099-b1d7d07d12f4?q=80&w=2670&auto=format&fit-crop" alt="Villas sobre a água em um resort nas Maldivas" class="w-full h-48 object-cover">
+        <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Maldivas', 'O auge do luxo e do relaxamento. Desfrute de bangalôs sobre águas turquesa, praias de areia branca imaculada e mergulhe em um universo de vida marinha vibrante. O paraíso na Terra.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755544999/113_-_Maldivas_zioywy.mp4')">
+            <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-asadphoto-1320684_gi7jks" alt="Villas sobre a água em um resort nas Maldivas" class="w-full h-48 object-cover">
             <div class="p-6">
                 <h3 class="text-2xl font-semibold text-logo-gold mb-2">Maldivas</h3>
                 <p class="leading-relaxed">Um refúgio de praias de areia branca, águas cristalinas e bangalôs sobre a água. O destino perfeito para relaxar.</p>
@@ -298,7 +302,7 @@
       <p class="text-center text-[#b3b3b3] mb-6">Receba as melhores ofertas e dicas exclusivas de viagens diretamente na sua caixa de entrada!</p>
       
       <!-- Formulário com FormSubmit -->
-      <form action="https://formsubmit.co/seuemail@dominio.com" method="POST" class="space-y-6">
+      <form action="https://formsubmit.co/sd1viagens@gmail.com" method="POST" class="space-y-6">
         <div>
           <label for="nome" class="block text-sm font-medium text-[#b3b3b3] mb-1">Nome</label>
           <input type="text" id="nome" name="nome" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
@@ -312,6 +316,33 @@
         <div>
           <label for="telefone" class="block text-sm font-medium text-[#b3b3b3] mb-1">Telefone</label>
           <input type="tel" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
+        </div>
+        
+        <!-- Novos campos de Data de Viagem, Número de Pessoas e Classe de Viagem -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label for="data-partida" class="block text-sm font-medium text-[#b3b3b3] mb-1">Data de Partida</label>
+            <input type="date" id="data-partida" name="data-partida" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
+          </div>
+          <div>
+            <label for="data-retorno" class="block text-sm font-medium text-[#b3b3b3] mb-1">Data de Retorno</label>
+            <input type="date" id="data-retorno" name="data-retorno" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="num-pessoas" class="block text-sm font-medium text-[#b3b3b3] mb-1">Número de Pessoas</label>
+          <input type="number" id="num-pessoas" name="num-pessoas" min="1" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
+        </div>
+
+        <div>
+          <label for="classe-viagem" class="block text-sm font-medium text-[#b3b3b3] mb-1">Classe de Viagem Desejada</label>
+          <select id="classe-viagem" name="classe-viagem" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
+            <option value="economica">Econômica</option>
+            <option value="economica-premium">Econômica Premium</option>
+            <option value="executiva">Executiva</option>
+            <option value="primeira-classe">1ª Classe</option>
+          </select>
         </div>
         
         <div>
@@ -445,6 +476,9 @@
             videoElement = document.createElement('video');
             videoElement.src = videoUrl;
             videoElement.controls = true; // Adiciona controles de player
+            videoElement.loop = true; // Adiciona loop para os vídeos
+            videoElement.autoplay = true; // Reproduz automaticamente
+            videoElement.muted = true; // Começa mudo
         } else {
             // Se não for um arquivo, assume que é um link do YouTube e usa iframe
             videoElement = document.createElement('iframe');
