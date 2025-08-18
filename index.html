@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SD Viagens - Viagens de Luxo</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Link para a nova fonte de luxo 'Playfair Display' do Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -14,7 +13,6 @@
             color: #b3b3b3;
         }
         .header-banner {
-            /* Imagem do banner principal foi restaurada para um URL genérico */
             background-image: url('https://images.unsplash.com/photo-1502444330042-33821774f176?q=80&w=2670&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -33,7 +31,6 @@
             box-shadow: 0 10px 18px rgba(0,0,0,0.5);
             border: 1px solid #C0A05D;
         }
-        /* Estilo para a cor exata do logo */
         .text-logo-gold {
             color: #C0A05D;
         }
@@ -72,19 +69,17 @@
         .close-button:hover {
             color: #FFD700;
         }
-        /* Ajuste do dropdown para mobile-first */
         .dropdown-menu {
             display: none;
-            position: static; /* Ajusta para layout de fluxo normal em mobile */
-            background-color: transparent; /* Remove o fundo */
-            box-shadow: none; /* Remove a sombra */
+            position: static;
+            background-color: transparent;
+            box-shadow: none;
             z-index: auto;
             min-width: unset;
         }
         .dropdown.open .dropdown-menu {
             display: block;
         }
-        /* Ajuste para telas maiores, onde o dropdown deve se comportar como antes */
         @media (min-width: 768px) {
             .dropdown:hover .dropdown-menu {
                 display: block;
@@ -100,7 +95,6 @@
             }
         }
         
-        /* Estilo para a mensagem de sucesso */
         #success-message {
             position: fixed;
             bottom: 20px;
@@ -114,15 +108,13 @@
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
-        /* Estilo adicional para os inputs de data, para que se encaixem melhor no design escuro */
         input[type="date"]::-webkit-calendar-picker-indicator {
             filter: invert(1);
         }
-        /* Novos estilos para o carrossel */
         .carousel-container {
             position: relative;
             overflow: hidden;
-            border-radius: 0.75rem; /* rounded-xl */
+            border-radius: 0.75rem;
             height: 500px;
             box-shadow: 0 10px 18px rgba(0,0,0,0.5);
         }
@@ -130,22 +122,20 @@
             display: flex;
             transition: transform 0.5s ease-in-out;
             height: 100%;
-            /* Correção para o problema do carrossel: garante que os itens não quebrem a linha */
             white-space: nowrap;
         }
         .carousel-item {
             min-width: 100%;
             height: 100%;
             position: relative;
-            /* Nova correção para o problema: impede que a imagem se encolha e garante largura total */
             flex: 0 0 100%;
-            box-sizing: border-box; /* Garante que padding e border não adicionem largura */
+            box-sizing: border-box;
         }
         .carousel-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block; /* Garante que a imagem se comporte como um bloco para melhor controle de layout */
+            display: block;
         }
         .carousel-controls {
             position: absolute;
@@ -189,23 +179,185 @@
         .carousel-dot.active {
             background: #C0A05D;
         }
+
+        /* Estilos da nova seção de Dicas de Viagem */
+        .tip-banner {
+            display: flex;
+            flex-direction: column;
+            background-color: #222222;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            /* Flexbox adjustment for no image */
+            justify-content: center;
+        }
+        .tip-banner:hover {
+            transform: translateY(-8px);
+        }
+        .tip-banner-content {
+            padding: 2rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .tip-banner-title {
+            color: #C0A05D;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .tip-banner-description {
+            color: #b3b3b3;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .card-divider {
+            width: 50px;
+            height: 3px;
+            background-color: #C0A05D;
+            margin-bottom: 1rem;
+        }
+        .read-more-btn {
+            background-color: #C0A05D;
+            color: #1a1a1a;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        .read-more-btn:hover {
+            background-color: #FFD700;
+            transform: scale(1.05);
+        }
+        .tip-detail-section {
+            background-color: #262626;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tip-detail-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #C0A05D;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .tip-detail-section p {
+            line-height: 1.8;
+            color: #b3b3b3;
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 1.5rem;
+        }
+        .tip-detail-section .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 800px;
+            text-align: left;
+        }
+        .tip-detail-section .list-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        .tip-detail-section .list-item h3 {
+            font-weight: bold;
+            color: #C0A05D;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        .tip-detail-section .list-item p {
+            margin-bottom: 0;
+            text-align: left;
+        }
+        .tip-detail-section .list-icon {
+            color: #C0A05D;
+            font-size: 1.5rem;
+            line-height: 1;
+            margin-right: 1rem;
+        }
+        .tip-detail-section .return-button-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .return-button {
+            background-color: #C0A05D;
+            color: #1a1a1a;
+            font-weight: bold;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        .return-button:hover {
+            background-color: #FFD700;
+            transform: scale(1.05);
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* Ajustes para mobile */
+        @media (max-width: 767px) {
+            .header-banner {
+                padding: 1rem;
+            }
+            .header-overlay {
+                padding: 1rem;
+            }
+            .text-4xl {
+                font-size: 2.5rem;
+            }
+            .text-2xl {
+                font-size: 1.5rem;
+            }
+            .text-xl {
+                font-size: 1rem;
+            }
+            .md\:flex-row {
+                flex-direction: column;
+            }
+            .md\:space-x-8 {
+                space-x: 0;
+            }
+            .md\:mt-0 {
+                margin-top: 1rem;
+            }
+            .md\:items-start {
+                align-items: center;
+            }
+            .md\:pr-8 {
+                padding-right: 0;
+            }
+            .card {
+                margin-bottom: 1rem;
+            }
+            .carousel-container {
+                height: 300px;
+            }
+        }
     </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#b3b3b3]">
 
     <!-- Header - Com imagem de lago, navegação e texto dourado -->
     <header class="header-banner text-white p-6 shadow-lg">
-        <!-- SVG do avião e seu caminho, posicionado no background do banner -->
         <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style="z-index: 1;">
-            <!-- Caminho para o avião seguir (invisível) -->
             <path id="airplane-path" d="M -5 50 C 25 10, 75 90, 105 50" fill="none" stroke="transparent" />
-            
-            <!-- Caminho tracejado que vai se desenhando -->
             <path id="traced-path" d="M -5 50 C 25 10, 75 90, 105 50" fill="none" stroke="#C0A05D" stroke-width="0.5" stroke-linecap="round" stroke-dasharray="2" />
-            
         </svg>
         
-        <!-- Este overlay e o conteúdo estão em uma camada superior ao SVG, garantindo visibilidade -->
         <div class="header-overlay p-6 md:p-10 z-20 relative">
             <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-4">
@@ -214,28 +366,22 @@
                 </div>
                 <p class="mt-2 md:mt-0 text-lg md:text-xl text-center text-logo-gold">Procure A Sua Nova Aventura</p>
 
-                <!-- Botão para menu mobile -->
                 <button id="menu-button" class="md:hidden text-logo-gold text-2xl mt-4">☰</button>
 
-                <!-- Menu de navegação. Adicionei a classe 'text-center' e ajustei os links internos. -->
+                <!-- Menu de navegação - Agora com o link para Dicas de Viagem -->
                 <nav id="main-menu" class="hidden md:flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 items-center space-y-4 md:space-y-0">
-                    <!-- Link para Home -->
-                    <!-- Adicionei 'block w-full text-center' para garantir alinhamento no mobile -->
                     <a href="#" class="block w-full text-center text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0" onclick="showSection('home-section')">Home</a>
                     
-                    <!-- Dropdown para Destinos -->
                     <div class="relative dropdown block w-full text-center">
-                        <!-- Adicionei um ID e um onclick para gerenciar o estado do dropdown no mobile -->
                         <a href="#" id="destinos-link" class="block w-full text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0">Destinos</a>
                         <div class="dropdown-menu">
-                            <!-- Links que ativam as categorias -->
                             <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700" onclick="showSection('brazil-section')">Brasil</a>
                             <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700" onclick="showSection('international-section')">Internacional</a>
                         </div>
                     </div>
                     
-                    <!-- Adicionei 'block w-full text-center' para garantir alinhamento no mobile -->
-                    <a href="#" class="block w-full text-center text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0">Dicas de Viagem</a>
+                    <!-- Adicionado o link para a nova seção de Dicas de Viagem -->
+                    <a href="#" class="block w-full text-center text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0" onclick="showSection('tips-section')">Dicas de Viagem</a>
                 </nav>
             </div>
         </div>
@@ -243,67 +389,52 @@
 
     <main class="container mx-auto p-4 md:p-8">
 
-        <!-- Nova Seção Home - Agora com duas colunas -->
+        <!-- Seção Home -->
         <section id="home-section" class="flex flex-col md:flex-row items-center justify-between py-12 hidden">
-            <!-- Coluna da Esquerda (Texto) -->
             <div class="flex flex-col items-center text-center md:text-left md:items-start w-full md:w-1/2 md:pr-8 mb-8 md:mb-0">
                 <h2 class="text-4xl font-bold text-logo-gold mb-4">Chegou a hora de descansar, não é mesmo?</h2>
                 <p class="text-xl text-[#b3b3b3] mb-8 max-w-2xl">Explore a nossa categoria e decida onde você quer estar!</p>
-                
                 <h3 class="text-2xl font-semibold text-logo-gold mb-4">Sua Próxima Aventura Aguarda</h3>
                 <p class="text-lg text-[#b3b3b3] mb-8 max-w-3xl">Na SD Viagens, criamos mais do que pacotes, criamos memórias. Cada destino é escolhido a dedo e cada detalhe é planejado para oferecer uma experiência de luxo e total tranquilidade. De praias paradisíacas no Brasil a paisagens de tirar o fôlego no exterior, nosso objetivo é superar suas expectativas e transformar seus sonhos em realidade.</p>
-                
                 <button onclick="showSection('brazil-section')" class="bg-logo-gold text-gray-900 py-3 px-6 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
                     Explorar Destinos
                 </button>
             </div>
             
-            <!-- Coluna da Direita (Carrossel) -->
             <div class="w-full md:w-1/2">
-                <!-- Contêiner principal do carrossel -->
                 <div id="carousel-container" class="carousel-container">
-                    <!-- Contêiner interno das imagens -->
                     <div id="carousel-inner" class="carousel-inner">
-                        <!-- Item do carrossel 1 (Mantido) -->
                         <div class="carousel-item">
                             <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-jaime-reimer-1376930-2662116_qp91bo" alt="Moraine Lake com montanhas e floresta de pinheiros">
                         </div>
-                        <!-- Item do carrossel 2 (Nova Imagem: Tailândia) -->
                         <div class="carousel-item">
                             <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-miroalt-176400_luv0jl" alt="Praia paradisíaca na Tailândia">
                         </div>
-                        <!-- Item do carrossel 3 (Nova Imagem: Islândia) -->
                         <div class="carousel-item">
                             <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-ken-cheung-3355734-5384149_n3wkzn" alt="Paisagem de aurora boreal na Islândia">
                         </div>
-                        <!-- Item do carrossel 4 (Nova Imagem: Veneza) -->
                         <div class="carousel-item">
                             <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-david-bartus-43782-586687_qeohbt" alt="Ruas de Veneza, Itália">
                         </div>
                     </div>
                     
-                    <!-- Controles de navegação (setas) -->
                     <div class="carousel-controls">
                         <button id="prev-button" class="carousel-control">&#10094;</button>
                         <button id="next-button" class="carousel-control">&#10095;</button>
                     </div>
 
-                    <!-- Indicadores (pontos) -->
                     <div id="carousel-dots" class="carousel-dots"></div>
                 </div>
                 
-                <!-- Legenda da imagem que mudará dinamicamente -->
                 <p id="image-caption" class="text-center mt-4 text-[#b3b3b3]"></p>
             </div>
         </section>
 
         <!-- Seção de Destinos (Brasil) -->
         <section id="brazil-section" class="grid grid-cols-1 md:grid-cols-3 gap-8 hidden">
-            <!-- Título da Seção de Destinos -->
             <div class="md:col-span-3 text-center">
                 <h2 class="text-4xl font-bold text-logo-gold my-8">Destinos no Brasil</h2>
             </div>
-            <!-- Card Rio de Janeiro - Corrigido para chamar a função de contato -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Rio de Janeiro', 'Descubra o Rio de Janeiro, onde a energia pulsante da metrópole encontra a beleza natural de praias lendárias e a imponência do Cristo Redentor. Uma experiência vibrante e inesquecível.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755541736/303_-_No_topo_do_Rio_Rio_de_Janeiro_-_Brasil_ujmwjm.mov')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-bertellifotografia-2868242_iu64es" alt="Praia do Rio de Janeiro com o Pão de Açúcar ao fundo" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -312,7 +443,6 @@
                 </div>
             </div>
 
-            <!-- Card Amazônia -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Amazônia', 'A maior floresta tropical do mundo te convida para uma jornada de descoberta. Explore a biodiversidade única, navegue por rios misteriosos e mergulhe em uma cultura ancestral.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543255/V%C3%ADdeo_sem_t%C3%ADtulo_Feito_com_o_Clipchamp_g4zyxi.mp4')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-bkd--30133825_afjl9d" alt="Floresta exuberante na Amazônia" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -321,7 +451,6 @@
                 </div>
             </div>
 
-            <!-- Card Salvador - URL do vídeo atualizada -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Salvador', 'Salvador é a alma do Brasil, onde a história colonial se encontra com a cultura afro-brasileira. Percorra as ruas coloridas do Pelourinho, sinta a alegria dos ritmos locais e saboreie a culinária que encanta.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543420/17696122-uhd_3840_2160_30fps_uegfpx.mp4')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-braujardim-30495351_ie7aso" alt="Casas coloridas do Pelourinho em Salvador" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -330,8 +459,6 @@
                 </div>
             </div>
             
-            <!-- Novo Card Fernando de Noronha -->
-            <!-- O URL do vídeo foi atualizado para um arquivo .mp4 -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Fernando de Noronha', 'Um santuário ecológico no meio do Atlântico. Suas praias de areia dourada e vida marinha exuberante fazem deste um destino de mergulho incomparável. Exclusividade e beleza natural em um só lugar.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543667/233_-_Um_parai%CC%81so_chamado_Fernando_de_Noronha_Fernando_de_Noronha_-_Brasil_klnye4.mp4')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-evandro-kluge-201796092-12271415_bqvqcr" alt="Praia em Fernando de Noronha com rochas e mar cristalino" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -340,7 +467,6 @@
                 </div>
             </div>
 
-            <!-- Novo Card Foz do Iguaçu - Agora usando o novo video .mov -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Foz do Iguaçu', 'As Cataratas do Iguaçu são uma das maiores maravilhas naturais do planeta. Sinta a força e o som da água, explore a floresta circundante e testemunhe um espetáculo de pura grandiosidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755544230/302_-_A_Beleza_das_quedas_Cataratas_do_Igua%C3%A7u_Foz_do_Igua%C3%A7u_-_Brasil_mtgujx.mov')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-tatianeherder-2851515_beb4uv" alt="Cataratas do Iguaçu com arco-íris" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -349,7 +475,6 @@
                 </div>
             </div>
 
-            <!-- Novo Card Gramado -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Gramado', 'Gramado é um refúgio europeu no sul do Brasil. Desfrute da arquitetura charmosa, do clima aconchegante e de uma gastronomia que celebra sabores de todo o mundo. Perfeito para relaxar.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543522/137_-_A_cidade_mais_bonita_no_Natal_Gramado_-_Brasil_ddymm2.mov')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/Gemini_Generated_Image_sd1xswsd1xswsd1x_c2ddf0" alt="Gramado coberta de neve ou geada" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -361,13 +486,10 @@
         </section>
 
         <!-- Seção de Destinos (Internacional) -->
-        <!-- Esta seção está oculta por padrão -->
         <section id="international-section" class="grid grid-cols-1 md:grid-cols-3 gap-8 hidden">
-            <!-- Título da Seção de Destinos -->
             <div class="md:col-span-3 text-center">
                 <h2 class="text-4xl font-bold text-logo-gold my-8">Destinos Internacionais</h2>
             </div>
-            <!-- Card de exemplo - Paris -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Paris', 'Conheça a cidade-luz, o coração do romance e da arte. Sinta a história em cada rua, desfrute da gastronomia em charmosos bistrôs e se deslumbre com a grandiosidade da Torre Eiffel e do Louvre.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545000/112_-_Paris_Fran%C3%A7a_yzcape.mp4')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-hammyx-941416_lecniz" alt="Torre Eiffel em Paris" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -375,7 +497,6 @@
                     <p class="leading-relaxed">A cidade-luz é um convite ao romance e à arte. Passeie pela Torre Eiffel, explore o Louvre e desfrute de cafés charmosos.</p>
                 </div>
             </div>
-            <!-- Card de exemplo - Tóquio -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Tóquio', 'Uma fusão única de tradição e futuro. Admire a serenidade dos templos antigos e mergulhe na energia caótica e tecnológica de bairros modernos. Tóquio é uma viagem para os sentidos.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545880/100-As-belezas-de-To%CC%81quio_-To%CC%81quio-Japa%CC%83o_dvjeew.mp4')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-apasaric-2506923_gzarqk" alt="Rua de Tóquio" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -383,7 +504,6 @@
                     <p class="leading-relaxed">Uma metrópole fascinante que mistura tradição e modernidade. Explore templos antigos e a tecnologia futurista da capital japonesa.</p>
                 </div>
             </div>
-            <!-- Novo Card - Roma -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Roma', 'Sinta a grandiosidade da história em cada esquina da Cidade Eterna. Caminhe pelos passos dos gladiadores no Coliseu, jogue uma moeda na Fontana di Trevi e desfrute da autêntica culinária italiana. ', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755546200/V%C3%ADdeo_sem_t%C3%ADtulo_Feito_com_o_Clipchamp_1_pqjfef.mp4')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-regan-dsouza-1315522347-33420260_h9fdn0" alt="Coliseu em Roma ao pôr do sol" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -391,7 +511,6 @@
                     <p class="leading-relaxed">A cidade eterna. Viaje no tempo com a história do Coliseu, desfrute da gastronomia e da atmosfera vibrante das ruas italianas.</p>
                 </div>
             </div>
-            <!-- Novo Card - Santorini -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Santorini', 'Um refúgio de tirar o fôlego, com suas icónicas casas brancas e cúpulas azuis que se debruçam sobre o mar Egeu. Ideal para casais, é o cenário perfeito para um pôr do sol inesquecível e momentos de pura tranquilidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545005/108_-_Santorini_Gr%C3%A9cia_gdgrq1.mp4')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-pixabay-161815_tl4ixf" alt="Vila de Santorini com casas brancas e cúpulas azuis" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -399,7 +518,6 @@
                     <p class="leading-relaxed">O cenário de cartão-postal com casas brancas, cúpulas azuis e o pôr do sol mais espetacular da Grécia. Um refúgio romântico.</p>
                 </div>
             </div>
-            <!-- Novo Card - Nova York -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Nova York', 'A cidade que nunca dorme oferece uma experiência sem igual. Sinta a energia de Manhattan, encontre a paz no Central Park e descubra a arte e a cultura de classe mundial em cada esquina. Uma aventura urbana completa.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545003/246_-_Estatua_da_Liberdade_New_York_-_Estados_Unidos_z7sbsu.mov')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-st-supreme-2148276282-33435991_mb0bkj" alt="Manhattan skyline com arranha-céus à noite" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -407,7 +525,6 @@
                     <p class="leading-relaxed">A cidade que nunca dorme. Explore a energia da Times Square, a tranquilidade do Central Park e a arte dos seus museus.</p>
                 </div>
             </div>
-            <!-- Novo Card - Maldivas -->
             <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Maldivas', 'O auge do luxo e do relaxamento. Desfrute de bangalôs sobre águas turquesa, praias de areia branca imaculada e mergulhe em um universo de vida marinha vibrante. O paraíso na Terra.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755544999/113_-_Maldivas_zioywy.mp4')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-asadphoto-1320684_gi7jks" alt="Villas sobre a água em um resort nas Maldivas" class="w-full h-48 object-cover">
                 <div class="p-6">
@@ -417,12 +534,185 @@
             </div>
         </section>
 
+        <!-- Seção de Dicas de Viagem (Conteúdo atualizado e sem imagens) -->
+        <section id="tips-section" class="py-12 hidden">
+            <h2 class="text-4xl font-bold text-center text-logo-gold mb-12">
+                Dicas de Viagem
+            </h2>
+            <div class="flex flex-col items-center">
+                <!-- Dica 1: Culinária Local -->
+                <div class="tip-banner" onclick="showTip('tip1')">
+                    <div class="tip-banner-content">
+                        <h3 class="tip-banner-title">Sabores do Mundo: Dicas de Culinária Local</h3>
+                        <div class="card-divider"></div>
+                        <p class="tip-banner-description">
+                            Descubra a alma de um destino através de sua gastronomia. Aprenda a encontrar os melhores pratos típicos e vivenciar uma verdadeira aventura culinária.
+                        </p>
+                        <button class="read-more-btn">Leia Mais</button>
+                    </div>
+                </div>
+
+                <!-- Dica 2: Organização da Mala -->
+                <div class="tip-banner" onclick="showTip('tip2')">
+                    <div class="tip-banner-content">
+                        <h3 class="tip-banner-title">Malas Inteligentes: Guia para Organizar a Bagagem</h3>
+                        <div class="card-divider"></div>
+                        <p class="tip-banner-description">
+                            Aprenda a otimizar sua bagagem para viajar com conforto, sem excesso de peso e com tudo o que você precisa à mão.
+                        </p>
+                        <button class="read-more-btn">Leia Mais</button>
+                    </div>
+                </div>
+
+                <!-- Dica 3: Planejamento da Viagem -->
+                <div class="tip-banner" onclick="showTip('tip3')">
+                    <div class="tip-banner-content">
+                        <h3 class="tip-banner-title">Como Planejar a Viagem Perfeita</h3>
+                        <div class="card-divider"></div>
+                        <p class="tip-banner-description">
+                            Descubra como criar um roteiro impecável, gerenciar seu orçamento e escolher o destino ideal para o seu próximo passeio.
+                        </p>
+                        <button class="read-more-btn">Leia Mais</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conteúdo das Dicas (atualizado e expandido) -->
+        <!-- Dicas de Culinária -->
+        <section id="tip1" class="py-12 hidden">
+            <div class="tip-detail-section">
+                <h1>Sabores do Mundo: Mergulhe na Culinária Local</h1>
+                <p>
+                    A culinária é uma das formas mais ricas e autênticas de se conectar com a cultura de um destino. Ela conta a história de um povo, suas tradições e os sabores da terra. Prepare-se para uma aventura que vai além do paladar e explore a alma de cada lugar por meio de sua gastronomia.
+                </p>
+                <div class="list-container">
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Experimente a Comida de Rua</h3>
+                            <p>As iguarias mais autênticas e deliciosas muitas vezes estão nas barraquinhas, feiras e mercados. Não tenha receio de provar; a comida de rua oferece um sabor genuíno do cotidiano da cidade e é uma experiência social por si só. É uma forma de comer bem e barato, convivendo com os locais.</p>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Visite Restaurantes Fora da Rota Turística</h3>
+                            <p>Enquanto os restaurantes nos pontos turísticos são convenientes, os melhores segredos culinários estão escondidos nos bairros menos explorados. Pesquise por locais frequentados por moradores, leia blogs de viagem especializados ou simplesmente caminhe por ruas secundárias. Procure por pequenos estabelecimentos com menus em idioma local – isso geralmente é um bom sinal!</p>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Peça Recomendações aos Moradores</h3>
+                            <p>Uma das melhores dicas de todas. Pergunte a um taxista, ao recepcionista do hotel, a um vendedor ou a um morador local onde eles gostam de comer. Eles o levarão a joias escondidas e a experiências autênticas que você não encontraria em um guia de viagem. Não hesite em perguntar sobre o prato típico da região.</p>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Faça um Tour Gastronômico</h3>
+                            <p>Existem passeios focados em culinária que te levam a provar pratos típicos em diversos estabelecimentos. É uma forma divertida e organizada de conhecer a história por trás dos sabores, aprender sobre os ingredientes locais e descobrir lugares que você não encontraria sozinho. Muitos desses tours são conduzidos por guias locais apaixonados pela comida de sua cidade.</p>
+                        </div>
+                    </div>
+                    <div class="return-button-container">
+                        <button class="return-button" onclick="showSection('tips-section')">Voltar às Dicas</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dicas de Organização da Mala -->
+        <section id="tip2" class="py-12 hidden">
+            <div class="tip-detail-section">
+                <h1>Malas Inteligentes: Viaje Mais Leve e com Mais Estilo</h1>
+                <p>
+                    Uma mala bem organizada pode fazer toda a diferença na sua viagem, poupando tempo e estresse. Viajar com o essencial e de forma organizada permite que você se concentre no que realmente importa: a experiência.
+                </p>
+                <div class="list-container">
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Faça uma Lista de Itens Essenciais</h3>
+                            <p>Antes de tudo, liste o que você realmente precisa para a viagem. Considere o clima, a duração, as atividades planejadas e eventuais eventos formais. Isso evita que você leve itens desnecessários e que apenas adicionam peso à sua bagagem.</p>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Use o Método "Rolinho" ou Cubos de Embalagem</h3>
+                            <p>Em vez de dobrar as roupas, enrole-as firmemente. Essa técnica economiza muito espaço e minimiza as rugas. Outra dica valiosa é usar cubos de embalagem para separar suas roupas por categoria (camisetas, calças, roupas íntimas). Isso mantém tudo arrumado e facilita o acesso aos seus pertences, evitando que você precise desarrumar a mala inteira.</p>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Invista em Peças Versáteis</h3>
+                            <p>Opte por roupas que podem ser combinadas de várias maneiras. Cores neutras e peças básicas são excelentes para criar múltiplos looks com menos itens. Leve uma jaqueta ou um casaco versátil que combine com tudo e não ocupe muito espaço.</p>
+                        </div>
+                    </div>
+                     <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Aproveite o Espaço Interno</h3>
+                            <p>Use o interior de seus sapatos para guardar meias, cintos ou outros pequenos itens. Coloque joias em caixas pequenas ou em saquinhos plásticos para evitar que se percam ou embolem. Use garrafinhas de viagem para shampoos e condicionadores, e sempre as coloque em um saco plástico para evitar vazamentos.</p>
+                        </div>
+                    </div>
+                    <div class="return-button-container">
+                        <button class="return-button" onclick="showSection('tips-section')">Voltar às Dicas</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dicas de Planejamento -->
+        <section id="tip3" class="py-12 hidden">
+            <div class="tip-detail-section">
+                <h1>Guia Completo: Planejando Sua Viagem dos Sonhos</h1>
+                <p>
+                    O planejamento é a chave para uma viagem inesquecível e sem estresse. Ao dedicar um tempo para organizar os detalhes, você garante que cada momento do seu passeio seja de pura alegria, sem imprevistos.
+                </p>
+                <div class="list-container">
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Escolha Seu Destino com Cuidado</h3>
+                            <p>Comece definindo o tipo de experiência que você busca. Aventura na natureza? Relaxamento na praia? Imersão cultural na cidade? Pesquise lugares que se alinhem aos seus desejos e ao seu orçamento. Considere também a melhor época do ano para visitar, evitando a alta temporada para economizar ou a baixa estação para aproveitar melhor.</p>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Defina o Orçamento e Faça um Plano Financeiro</h3>
+                            <p>Crie uma planilha detalhada com estimativas de custos para passagens, hospedagem, alimentação, transporte local, passeios e compras. Pesquise os preços médios e lembre-se de incluir uma reserva para despesas inesperadas. Defina um valor diário para alimentação e transporte para ter mais controle financeiro.</p>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Crie um Roteiro Detalhado, mas Flexível</h3>
+                            <p>Organize um cronograma diário com os pontos turísticos que deseja visitar, horários de funcionamento e a melhor forma de chegar a cada um. No entanto, lembre-se de ser flexível; a beleza de uma viagem também está nos imprevistos e na capacidade de explorar sem pressa. Considere agendar passeios e ingressos com antecedência para evitar filas e garantir seu lugar.</p>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">&#x2713;</span>
+                        <div>
+                            <h3>Documentos e Reservas</h3>
+                            <p>Não se esqueça de verificar a validade de seu passaporte e visto, se necessário. Faça cópias de todos os seus documentos importantes e mantenha-as em um lugar seguro. Confirme todas as suas reservas de voos e hospedagem com antecedência e guarde as confirmações em um local de fácil acesso, como uma pasta digital ou um aplicativo de organização de viagens.</p>
+                        </div>
+                    </div>
+                    <div class="return-button-container">
+                        <button class="return-button" onclick="showSection('tips-section')">Voltar às Dicas</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Seção do Formulário -->
         <section id="contact-form-section" class="bg-[#262626] rounded-xl shadow-lg p-8 mt-12 max-w-2xl mx-auto hidden">
             <h2 class="text-3xl font-bold text-center text-logo-gold mb-6">Sua Próxima Aventura Aguarda...</h2>
             <p class="text-center text-[#b3b3b3] mb-6">Receba as melhores ofertas e dicas exclusivas de viagens diretamente na sua caixa de entrada!</p>
             
-            <!-- Formulário com FormSubmit -->
             <form action="https://formsubmit.co/sd1viagens@gmail.com" method="POST" class="space-y-6">
                 <div>
                     <label for="nome" class="block text-sm font-medium text-[#b3b3b3] mb-1">Nome</label>
@@ -439,7 +729,6 @@
                     <input type="tel" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
                 </div>
                 
-                <!-- Novos campos de Data de Viagem, Número de Pessoas e Classe de Viagem -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="data-partida" class="block text-sm font-medium text-[#b3b3b3] mb-1">Data de Partida</label>
@@ -483,7 +772,6 @@
                 <span class="close-button" onclick="closeModal()">&times;</span>
                 <h2 id="modal-title" class="text-3xl font-bold text-center text-logo-gold mb-4"></h2>
                 <p id="modal-description" class="text-center text-[#b3b3b3] mb-6"></p>
-                <!-- Div para o vídeo que será adicionado via JavaScript -->
                 <div id="modal-video-container" class="mt-4 rounded-lg overflow-hidden aspect-video"></div>
                 <button id="modal-reserve-button" class="w-full bg-logo-gold text-gray-900 py-3 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300 mt-6">
                     Reservar
@@ -491,261 +779,220 @@
             </div>
         </div>
 
-        <!-- Mensagem de sucesso (adicionada para feedback visual) -->
         <div id="success-message" class="hidden">Formulário preenchido com sucesso!</div>
+    </main>
 
-        <!-- Footer -->
-        <footer class="bg-[#121212] text-gray-400 text-center py-4 mt-8">
-            <p>&copy; 2025 SD Viagens. Todos os direitos reservados.</p>
-        </footer>
+    <footer class="bg-[#121212] text-gray-400 text-center py-4 mt-8">
+        <p>&copy; 2025 SD Viagens. Todos os direitos reservados.</p>
+    </footer>
 
-        <script>
-            // Acessa os elementos SVG via ID
-            const tracedPath = document.getElementById('traced-path');
-            const pathLength = tracedPath.getTotalLength(); // Calcula o comprimento total do caminho
+    <script>
+        const tracedPath = document.getElementById('traced-path');
+        const pathLength = tracedPath.getTotalLength();
 
-            // Sincroniza o offset inicial do caminho tracejado
-            tracedPath.style.strokeDasharray = pathLength;
-            tracedPath.style.strokeDashoffset = pathLength;
+        tracedPath.style.strokeDasharray = pathLength;
+        tracedPath.style.strokeDashoffset = pathLength;
 
-            // Define a duração da animação para sincronizar os dois
-            const animationDuration = '10s';
+        const animationDuration = '10s';
 
-            // Cria a animação para o traçado do caminho
-            const dashAnimation = tracedPath.animate([
-                { strokeDashoffset: pathLength },
-                { strokeDashoffset: 0 }
-            ], {
-                duration: parseFloat(animationDuration) * 1000,
-                iterations: Infinity,
-                easing: 'linear'
+        const dashAnimation = tracedPath.animate([
+            { strokeDashoffset: pathLength },
+            { strokeDashoffset: 0 }
+        ], {
+            duration: parseFloat(animationDuration) * 1000,
+            iterations: Infinity,
+            easing: 'linear'
+        });
+
+        // Função para mostrar a seção com um determinado ID
+        function showSection(sectionId) {
+            const allSections = document.querySelectorAll('main section');
+            allSections.forEach(section => {
+                section.classList.add('hidden');
             });
 
-            // Função genérica para mostrar a seção com um determinado ID
-            function showSection(sectionId) {
-                const allSections = document.querySelectorAll('main section');
-                allSections.forEach(section => {
-                    section.classList.add('hidden');
-                    section.style.display = 'none';
-                });
-
-                const targetSection = document.getElementById(sectionId);
-                if (targetSection) {
-                    // A seção de Home usa flex, as outras usam grid
-                    if (sectionId === 'home-section') {
-                        targetSection.classList.remove('hidden');
-                        targetSection.style.display = 'flex';
-                    } else {
-                        targetSection.classList.remove('hidden');
-                        targetSection.style.display = 'grid';
-                    }
-                }
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function goToContactForm(destinationName) {
+            showSection('contact-form-section');
+
+            const contactFormSection = document.getElementById('contact-form-section');
+            const messageInput = document.getElementById('message-input');
+            const successMessage = document.getElementById('success-message');
             
-            // Função para direcionar para o formulário e pré-preencher a mensagem
-            function goToContactForm(destinationName) {
-                // Primeiro, garante que a seção do formulário esteja visível
-                showSection('contact-form-section');
+            contactFormSection.scrollIntoView({ behavior: 'smooth' });
 
-                // Agora, pode rolar para ela e interagir com os elementos
-                const contactFormSection = document.getElementById('contact-form-section');
-                const messageInput = document.getElementById('message-input');
-                const successMessage = document.getElementById('success-message');
-                
-                // Rola suavemente até a seção do formulário
-                contactFormSection.scrollIntoView({ behavior: 'smooth' });
+            messageInput.value = `Quero reservar uma viagem para ${destinationName}.`;
+            
+            messageInput.focus();
 
-                // Pré-preenche o campo de mensagem
-                messageInput.value = `Quero reservar uma viagem para ${destinationName}.`;
-                
-                // Foca no campo para facilitar a digitação
-                messageInput.focus();
+            successMessage.style.opacity = '1';
+            successMessage.style.display = 'block';
 
-                // Mostra a mensagem de sucesso
-                successMessage.style.opacity = '1';
-                successMessage.style.display = 'block';
-
-                // Esconde a mensagem de sucesso após 3 segundos
+            setTimeout(() => {
+                successMessage.style.opacity = '0';
                 setTimeout(() => {
-                    successMessage.style.opacity = '0';
-                    setTimeout(() => {
-                        successMessage.style.display = 'none';
-                    }, 500); // Aguarda o fim da transição
-                }, 3000);
+                    successMessage.style.display = 'none';
+                }, 500);
+            }, 3000);
+        }
+
+        function openModal(destinationName, destinationDescription, videoUrl) {
+            const modal = document.getElementById('destination-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalReserveButton = document.getElementById('modal-reserve-button');
+            const videoContainer = document.getElementById('modal-video-container');
+
+            modalTitle.textContent = destinationName;
+            modalDescription.textContent = destinationDescription;
+            
+            videoContainer.innerHTML = '';
+            
+            let videoElement;
+            if (videoUrl.endsWith('.mp4') || videoUrl.endsWith('.webm') || videoUrl.endsWith('.ogg') || videoUrl.endsWith('.mov')) {
+                videoElement = document.createElement('video');
+                videoElement.src = videoUrl;
+                videoElement.controls = true;
+                videoElement.loop = true;
+                videoElement.autoplay = true;
+                videoElement.muted = true;
+            } else {
+                videoElement = document.createElement('iframe');
+                videoElement.src = videoUrl;
+                videoElement.allowFullscreen = true;
             }
 
-            // Função para abrir a modal com os detalhes do destino e o vídeo
-            function openModal(destinationName, destinationDescription, videoUrl) {
-                const modal = document.getElementById('destination-modal');
-                const modalTitle = document.getElementById('modal-title');
-                const modalDescription = document.getElementById('modal-description');
-                const modalReserveButton = document.getElementById('modal-reserve-button');
-                const videoContainer = document.getElementById('modal-video-container');
+            videoElement.className = 'w-full h-full';
+            
+            videoContainer.appendChild(videoElement);
 
-                // Preenche o conteúdo da modal
-                modalTitle.textContent = destinationName;
-                modalDescription.textContent = destinationDescription;
-                
-                // Limpa o contêiner do vídeo antes de adicionar um novo
-                videoContainer.innerHTML = '';
-                
-                let videoElement;
-                // Verifica se o URL do vídeo é um arquivo de vídeo (por exemplo, .mp4, .mov, etc.)
-                if (videoUrl.endsWith('.mp4') || videoUrl.endsWith('.webm') || videoUrl.endsWith('.ogg') || videoUrl.endsWith('.mov')) {
-                    videoElement = document.createElement('video');
-                    videoElement.src = videoUrl;
-                    videoElement.controls = true; // Adiciona controles de player
-                    videoElement.loop = true; // Adiciona loop para os vídeos
-                    videoElement.autoplay = true; // Reproduz automaticamente
-                    videoElement.muted = true; // Começa mudo
-                } else {
-                    // Se não for um arquivo, assume que é um link do YouTube e usa iframe
-                    videoElement = document.createElement('iframe');
-                    videoElement.src = videoUrl;
-                    videoElement.allowFullscreen = true;
-                }
-
-                // Define a classe para o elemento de vídeo
-                videoElement.className = 'w-full h-full';
-                
-                // Adiciona o elemento de vídeo ao contêiner
-                videoContainer.appendChild(videoElement);
-
-                // Define o evento de clique do botão de reserva
-                modalReserveButton.onclick = function() {
-                    closeModal();
-                    goToContactForm(destinationName);
-                };
-
-                // Exibe a modal
-                modal.style.display = 'flex';
-            }
-
-            // Função para fechar a modal
-            function closeModal() {
-                const modal = document.getElementById('destination-modal');
-                const videoContainer = document.getElementById('modal-video-container');
-
-                // Remove o iframe do vídeo ao fechar a modal
-                videoContainer.innerHTML = '';
-                modal.style.display = 'none';
-            }
-
-            // Lógica para o menu mobile
-            document.getElementById('menu-button').addEventListener('click', () => {
-                const menu = document.getElementById('main-menu');
-                menu.classList.toggle('hidden');
-                menu.classList.toggle('flex');
-                menu.classList.toggle('flex-col');
-                // Adicionei esta linha para garantir que o menu ocupe toda a largura no mobile
-                menu.classList.toggle('w-full');
-                menu.classList.toggle('text-center');
-            });
-
-            // Lógica para o dropdown 'Destinos' no mobile
-            document.getElementById('destinos-link').addEventListener('click', (e) => {
-                // Previne a navegação se estiver em mobile
-                if (window.innerWidth < 768) {
-                    e.preventDefault();
-                    const dropdown = e.currentTarget.closest('.dropdown');
-                    dropdown.classList.toggle('open');
-                }
-            });
-            
-            // --- Lógica do Carrossel ---
-            const carouselInner = document.getElementById('carousel-inner');
-            const prevButton = document.getElementById('prev-button');
-            const nextButton = document.getElementById('next-button');
-            const dotsContainer = document.getElementById('carousel-dots');
-            const imageCaption = document.getElementById('image-caption');
-            
-            // Array com as legendas das imagens (atualizado com a nova ordem)
-            const captions = [
-                "Moraine Lake com montanhas e floresta de pinheiros",
-                "Praia paradisíaca na Tailândia",
-                "Paisagem de aurora boreal na Islândia",
-                "Ruas de Veneza, Itália"
-            ];
-            
-            let currentIndex = 0;
-            const totalItems = carouselInner.children.length;
-            let autoSlideInterval;
-            
-            // Cria os pontos de navegação
-            function createDots() {
-                for (let i = 0; i < totalItems; i++) {
-                    const dot = document.createElement('div');
-                    dot.classList.add('carousel-dot');
-                    dot.addEventListener('click', () => {
-                        currentIndex = i;
-                        updateCarousel();
-                    });
-                    dotsContainer.appendChild(dot);
-                }
-            }
-            
-            // Atualiza a exibição do carrossel
-            function updateCarousel() {
-                const offset = -currentIndex * 100;
-                carouselInner.style.transform = `translateX(${offset}%)`;
-                
-                // Atualiza o ponto ativo
-                document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-                    if (index === currentIndex) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
-                });
-                
-                // Atualiza a legenda
-                imageCaption.textContent = captions[currentIndex];
-            }
-            
-            // Move para o próximo slide
-            function showNextSlide() {
-                currentIndex = (currentIndex + 1) % totalItems;
-                updateCarousel();
-            }
-            
-            // Move para o slide anterior
-            function showPrevSlide() {
-                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-                updateCarousel();
-            }
-            
-            // Inicia o slide automático com intervalo de 2 segundos
-            function startAutoSlide() {
-                stopAutoSlide(); // Evita múltiplos intervalos
-                autoSlideInterval = setInterval(showNextSlide, 2000); // Troca a cada 2 segundos
-            }
-            
-            // Para o slide automático
-            function stopAutoSlide() {
-                clearInterval(autoSlideInterval);
-            }
-            
-            // Adiciona event listeners para os botões de navegação
-            prevButton.addEventListener('click', () => {
-                stopAutoSlide(); // Para o carrossel automático
-                showPrevSlide();
-                startAutoSlide(); // Reinicia o carrossel automático
-            });
-
-            nextButton.addEventListener('click', () => {
-                stopAutoSlide(); // Para o carrossel automático
-                showNextSlide();
-                startAutoSlide(); // Reinicia o carrossel automático
-            });
-            
-            // Exibir a categoria Home por padrão ao carregar a página
-            window.onload = function() {
-                showSection('home-section');
-                createDots();
-                updateCarousel();
-                startAutoSlide();
+            modalReserveButton.onclick = function() {
+                closeModal();
+                goToContactForm(destinationName);
             };
-        </script>
 
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('destination-modal');
+            const videoContainer = document.getElementById('modal-video-container');
+
+            videoContainer.innerHTML = '';
+            modal.style.display = 'none';
+        }
+
+        document.getElementById('menu-button').addEventListener('click', () => {
+            const menu = document.getElementById('main-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            menu.classList.toggle('flex-col');
+            menu.classList.toggle('w-full');
+            menu.classList.toggle('text-center');
+        });
+
+        document.getElementById('destinos-link').addEventListener('click', (e) => {
+            if (window.innerWidth < 768) {
+                e.preventDefault();
+                const dropdown = e.currentTarget.closest('.dropdown');
+                dropdown.classList.toggle('open');
+            }
+        });
+
+        // Adicionada a função showTip para compatibilidade
+        function showTip(tipId) {
+            showSection(tipId);
+        }
+        
+        // --- Lógica do Carrossel ---
+        const carouselInner = document.getElementById('carousel-inner');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const dotsContainer = document.getElementById('carousel-dots');
+        const imageCaption = document.getElementById('image-caption');
+        
+        const captions = [
+            "Moraine Lake com montanhas e floresta de pinheiros",
+            "Praia paradisíaca na Tailândia",
+            "Paisagem de aurora boreal na Islândia",
+            "Ruas de Veneza, Itália"
+        ];
+        
+        let currentIndex = 0;
+        const totalItems = carouselInner.children.length;
+        let autoSlideInterval;
+        
+        function createDots() {
+            for (let i = 0; i < totalItems; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('carousel-dot');
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateCarousel();
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+        
+        function updateCarousel() {
+            const offset = -currentIndex * 100;
+            carouselInner.style.transform = `translateX(${offset}%)`;
+            
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            imageCaption.textContent = captions[currentIndex];
+        }
+        
+        function showNextSlide() {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        }
+        
+        function showPrevSlide() {
+            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+            updateCarousel();
+        }
+        
+        function startAutoSlide() {
+            stopAutoSlide(); // Para evitar a criação de múltiplos intervalos
+            autoSlideInterval = setInterval(showNextSlide, 2000);
+        }
+        
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+        
+        prevButton.addEventListener('click', () => {
+            stopAutoSlide();
+            showPrevSlide();
+            startAutoSlide();
+        });
+
+        nextButton.addEventListener('click', () => {
+            stopAutoSlide();
+            showNextSlide();
+            startAutoSlide();
+        });
+        
+        // Ao carregar, mostramos a seção home e inicializamos o carrossel.
+        window.onload = function() {
+            showSection('home-section');
+            createDots();
+            updateCarousel();
+            startAutoSlide();
+        };
+    </script>
 </body>
 </html>
