@@ -20,6 +20,8 @@
         }
         .header-overlay {
             background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
         }
         .card {
             transition: transform 0.3s, box-shadow 0.3s;
@@ -307,11 +309,141 @@
         .hidden {
             display: none;
         }
+        
+        /* Estilos para os botões fixos de redes sociais */
+        .social-buttons {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            z-index: 50;
+        }
+        .social-button {
+            background-color: #262626;
+            color: #C0A05D;
+            border-radius: 9999px;
+            padding: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s, color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .social-button:hover {
+            transform: scale(1.1);
+            background-color: #C0A05D;
+            color: #1a1a1a;
+        }
+        .social-button img {
+            width: 32px;
+            height: 32px;
+        }
+        /* Estilos da nova seção de Assessoria de Milhas */
+        .miles-advisory-section {
+            background-color: #262626; /* Cor do fundo da imagem de referência, alterada para combinar com o site */
+            color: #b3b3b3;
+        }
+        .miles-advisory-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 2.5rem 1.5rem;
+            border-radius: 0.75rem;
+            border: 2px solid #C0A05D;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            align-items: center;
+            text-align: center;
+        }
+        .miles-advisory-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: white;
+        }
+        .miles-advisory-title span {
+            color: #C0A05D;
+        }
+        .miles-advisory-description {
+            font-size: 1.125rem;
+            max-width: 400px;
+        }
+        .miles-advisory-card {
+            background-color: #1a293f;
+            border: 1px solid #C0A05D;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            text-align: center;
+            height: 100%;
+        }
+        .miles-advisory-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #b3b3b3;
+        }
+        .miles-advisory-image-container {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            border: 1px solid #C0A05D;
+        }
+        .miles-advisory-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
 
+        /* Novas classes para a seção de Benefícios */
+        .select-miles-btn.active {
+            background-color: #C0A05D;
+            color: #1a1a1a;
+        }
+        .select-miles-btn:not(.active) {
+            background-color: #262626;
+            color: #C0A05D;
+            border: 1px solid #C0A05D;
+        }
+        .benefits-list-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.125rem;
+        }
+        .benefits-list-icon {
+            color: #C0A05D;
+        }
+
+        @media (min-width: 768px) {
+            .miles-advisory-content {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+            .miles-advisory-text {
+                width: 40%;
+            }
+            .miles-advisory-card-container {
+                display: flex;
+                gap: 1.5rem;
+                width: 60%;
+                flex-grow: 1;
+            }
+            .miles-advisory-card {
+                flex: 1;
+            }
+        }
         /* Ajustes para mobile */
         @media (max-width: 767px) {
             .header-banner {
-                padding: 1rem;
+                padding: 0; /* Remove padding from the banner itself */
             }
             .header-overlay {
                 padding: 1rem;
@@ -346,14 +478,36 @@
             .carousel-container {
                 height: 300px;
             }
+            .social-buttons {
+                bottom: 0.5rem;
+                right: 0.5rem;
+            }
+            /* Novas classes para a navegação mobile com transição */
+            .nav-mobile {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+                opacity: 0;
+            }
+            .nav-mobile-open {
+                max-height: 500px; /* Um valor alto para garantir que o menu inteiro caiba */
+                opacity: 1;
+            }
+            .miles-advisory-content {
+                flex-direction: column;
+            }
+            .miles-advisory-card-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#b3b3b3]">
 
     <!-- Header - Com imagem de lago, navegação e texto dourado -->
-    <header class="header-banner text-white p-6 shadow-lg">
-        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style="z-index: 1;">
+    <header class="header-banner text-white p-0 shadow-lg">
+        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style="z-index: 10;">
             <path id="airplane-path" d="M -5 50 C 25 10, 75 90, 105 50" fill="none" stroke="transparent" />
             <path id="traced-path" d="M -5 50 C 25 10, 75 90, 105 50" fill="none" stroke="#C0A05D" stroke-width="0.5" stroke-linecap="round" stroke-dasharray="2" />
         </svg>
@@ -369,8 +523,9 @@
                 <button id="menu-button" class="md:hidden text-logo-gold text-2xl mt-4">☰</button>
 
                 <!-- Menu de navegação - Agora com o link para Dicas de Viagem -->
-                <nav id="main-menu" class="hidden md:flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 items-center space-y-4 md:space-y-0">
-                    <a href="#" class="block w-full text-center text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0" onclick="showSection('home-section')">Home</a>
+                <!-- As classes 'hidden' e 'flex' foram substituídas para a nova animação de transição -->
+                <nav id="main-menu" class="nav-mobile md:flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 items-center space-y-4 md:space-y-0">
+                    <a href="#" class="block w-full text-center text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0" onclick="showHome()">Home</a>
                     
                     <div class="relative dropdown block w-full text-center">
                         <a href="#" id="destinos-link" class="block w-full text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0">Destinos</a>
@@ -389,8 +544,9 @@
 
     <main class="container mx-auto p-4 md:p-8">
 
-        <!-- Seção Home -->
-        <section id="home-section" class="flex flex-col md:flex-row items-center justify-between py-12 hidden">
+        <!-- Seção Home Principal: Introdução e Carrossel -->
+        <!-- O 'hidden' foi removido para que a seção seja a padrão -->
+        <section id="home-section" class="flex flex-col md:flex-row items-center justify-between py-12">
             <div class="flex flex-col items-center text-center md:text-left md:items-start w-full md:w-1/2 md:pr-8 mb-8 md:mb-0">
                 <h2 class="text-4xl font-bold text-logo-gold mb-4">Chegou a hora de descansar, não é mesmo?</h2>
                 <p class="text-xl text-[#b3b3b3] mb-8 max-w-2xl">Explore a nossa categoria e decida onde você quer estar!</p>
@@ -430,6 +586,179 @@
             </div>
         </section>
 
+        <!-- Seção de Destinos Populares: Agora separada da seção home -->
+        <!-- O 'hidden' foi removido para que a seção seja a padrão na home -->
+        <section id="popular-destinations-section" class="py-12 w-full mt-12">
+            <h2 class="text-4xl font-bold text-center text-logo-gold mb-12">Destinos Populares</h2>
+
+            <!-- Populares Brasil -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-bold text-center text-logo-gold mb-8">Populares Brasil</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Rio de Janeiro', 'Descubra o Rio de Janeiro, onde a energia pulsante da metrópole encontra a beleza natural de praias lendárias e a imponência do Cristo Redentor. Uma experiência vibrante e inesquecível.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755541736/303_-_No_topo_do_Rio_Rio_de_Janeiro_-_Brasil_ujmwjm.mov')">
+                        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-bertellifotografia-2868242_iu64es" alt="Praia do Rio de Janeiro com o Pão de Açúcar ao fundo" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-logo-gold mb-2">Rio de Janeiro</h3>
+                            <p class="leading-relaxed">Sinta a energia contagiante da Cidade Maravilhosa...</p>
+                        </div>
+                    </div>
+
+                    <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Amazônia', 'A maior floresta tropical do mundo te convida para uma jornada de descoberta. Explore a biodiversidade única, navegue por rios misteriosos e mergulhe em uma cultura ancestral.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543255/V%C3%ADdeo_sem_t%C3%ADtulo_Feito_com_o_Clipchamp_g4zyxi.mp4')">
+                        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-bkd--30133825_afjl9d" alt="Floresta exuberante na Amazônia" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-logo-gold mb-2">Amazônia</h3>
+                            <p class="leading-relaxed">Conecte-se com a natureza na maior floresta tropical do planeta...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Fernando de Noronha', 'Um santuário ecológico no meio do Atlântico. Suas praias de areia dourada e vida marinha exuberante fazem deste um destino de mergulho incomparável. Exclusividade e beleza natural em um só lugar.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755544252/V%C3%ADdeo_sem_t%C3%ADtulo_Feito_com_o_Clipchamp_2_cv0nqp.mp4')">
+                        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-evandro-kluge-201796092-12271415_bqvqcr" alt="Praia em Fernando de Noronha com rochas e mar cristalino" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-logo-gold mb-2">Fernando de Noronha</h3>
+                            <p class="leading-relaxed">Um paraíso ecológico com praias intocadas e vida marinha exuberante...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button onclick="showSection('brazil-section')" class="bg-logo-gold text-gray-900 py-3 px-8 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
+                        Veja Mais
+                    </button>
+                </div>
+            </div>
+
+            <!-- Populares Internacional -->
+            <div>
+                <h3 class="text-3xl font-bold text-center text-logo-gold mb-8">Populares Internacional</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Paris', 'Conheça a cidade-luz, o coração do romance e da arte. Sinta a história em cada rua, desfrute da gastronomia em charmosos bistrôs e se deslumbre com a grandiosidade da Torre Eiffel e do Louvre.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545000/112_-_Paris_Fran%C3%A7a_yzcape.mp4')">
+                        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-hammyx-941416_lecniz" alt="Torre Eiffel em Paris" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-logo-gold mb-2">Paris</h3>
+                            <p class="leading-relaxed">A cidade-luz é um convite ao romance e à arte...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Tóquio', 'Uma fusão única de tradição e futuro. Admire a serenidade dos templos antigos e mergulhe na energia caótica e tecnológica de bairros modernos. Tóquio é uma viagem para os sentidos.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545880/100-As-belezas-de-To%CC%81quio_-To%CC%81quio-Japa%CC%83o_dvjeew.mp4')">
+                        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-apasaric-2506923_gzarqk" alt="Rua de Tóquio" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-logo-gold mb-2">Tóquio</h3>
+                            <p class="leading-relaxed">Uma metrópole fascinante que mistura tradição e modernidade...</p>
+                        </div>
+                    </div>
+
+                    <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Santorini', 'Um refúgio de tirar o fôlego, com suas icónicas casas brancas e cúpulas azuis que se debruçam sobre o mar Egeu. Ideal para casais, é o cenário perfeito para um pôr do sol inesquecível e momentos de pura tranquilidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545005/108_-_Santorini_Gr%C3%A9cia_gdgrq1.mp4')">
+                        <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-pixabay-161815_tl4ixf" alt="Vila de Santorini com casas brancas e cúpulas azuis" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-logo-gold mb-2">Santorini</h3>
+                            <p class="leading-relaxed">O cenário de cartão-postal com casas brancas, cúpulas azuis e o pôr do sol mais espetacular da Grécia...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button onclick="showSection('international-section')" class="bg-logo-gold text-gray-900 py-3 px-8 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
+                        Veja Mais
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Depoimentos -->
+        <section id="testimonials-section" class="py-12 w-full mt-12">
+            <h2 class="text-4xl font-bold text-center text-logo-gold mb-12">Pessoas que já viajaram conosco:</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Depoimento 1 -->
+                <div class="bg-[#262626] rounded-xl shadow-lg p-6 flex flex-col items-start space-y-4">
+                    <p class="leading-relaxed italic text-[#b3b3b3]">
+                        "A melhor decisão que tomei foi viajar com essa agência! Tudo foi pensado nos mínimos detalhes. Me senti segura, acolhida e tive uma experiência que superou todas as minhas expectativas. Com certeza voltarei a viajar com vocês!"
+                    </p>
+                    <div class="flex items-center space-x-4 mt-4">
+                        <img src="https://vooperfeito.com.br/wp-content/uploads/2025/05/fc3b4420-92bf-4508-ae3f-68c8e783f96e.jpeg" alt="Foto de Mariana L." class="w-16 h-16 rounded-full object-cover border-2 border-logo-gold">
+                        <div>
+                            <p class="font-semibold text-lg text-logo-gold">Mariana L.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Depoimento 2 -->
+                <div class="bg-[#262626] rounded-xl shadow-lg p-6 flex flex-col items-start space-y-4">
+                    <p class="leading-relaxed italic text-[#b3b3b3]">
+                        "Fiz minha primeira viagem internacional e fiquei impressionado com a organização e suporte que recebi. Me senti seguro do início ao fim. Foi, sem dúvidas, a melhor experiência de viagem que já tive."
+                    </p>
+                    <div class="flex items-center space-x-4 mt-4">
+                        <img src="https://vooperfeito.com.br/wp-content/uploads/2025/05/bbf92ef5-a969-4271-bd55-f52268c69721.jpeg" alt="Foto de André C." class="w-16 h-16 rounded-full object-cover border-2 border-logo-gold">
+                        <div>
+                            <p class="font-semibold text-lg text-logo-gold">André C.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Depoimento 3 -->
+                <div class="bg-[#262626] rounded-xl shadow-lg p-6 flex flex-col items-start space-y-4">
+                    <p class="leading-relaxed italic text-[#b3b3b3]">
+                        "Viajar é uma das minhas paixões, e dessa vez foi ainda mais especial. A agência cuidou de tudo: desde voos confortáveis até hospedagens incríveis. Eu só precisei aproveitar cada momento. Recomendo de olhos fechados!"
+                    </p>
+                    <div class="flex items-center space-x-4 mt-4">
+                        <img src="https://vooperfeito.com.br/wp-content/uploads/2025/05/a316f27a-ad3f-4b8c-b26f-e3af10c4a4e3-1.jpeg" alt="Foto de Fernanda S." class="w-16 h-16 rounded-full object-cover border-2 border-logo-gold">
+                        <div>
+                            <p class="font-semibold text-lg text-logo-gold">Fernanda S.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Início da Nova Seção: Benefícios de Milhas -->
+        <section id="miles-advisory-section" class="py-12 w-full mt-12">
+            <div class="miles-advisory-content mx-auto max-w-7xl">
+                <div class="miles-advisory-text flex-1">
+                    <h2 class="miles-advisory-title mb-4">Que tal viajar até <span class="text-logo-gold">90%</span> mais em <br/> <span class="text-logo-gold">conta</span> com seus próprios gastos?</h2>
+                    <p class="miles-advisory-description">Se você gasta acima de R$ 10 mil por mês e viaja pelo menos 2 vezes por ano. A Assessoria de Milhas é para você.</p>
+                </div>
+                <div class="miles-advisory-card-container flex-1">
+                    <div class="miles-advisory-card bg-transparent border-0 border-solid border-logo-gold rounded-none">
+                        <span class="text-6xl text-logo-gold">🗺️</span>
+                        <p>Executiva com preço de econômica agora é possível.</p>
+                    </div>
+                    <div class="miles-advisory-image-container flex-1">
+                        <img src="https://vooperfeito.com.br/wp-content/uploads/2025/05/young-woman-using-phone-while-sitting-table-2-scaled-1-1024x684.jpg" alt="Mulher em um avião de primeira classe" class="miles-advisory-image w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Fim da Nova Seção: Benefícios de Milhas -->
+
+        <!-- Início da Nova Seção com Exemplos (baseada na imagem) -->
+        <section id="miles-benefits-section" class="py-12 w-full mt-12">
+            <div class="miles-benefits-content mx-auto max-w-7xl text-center">
+                <h2 class="text-4xl font-bold text-logo-gold mb-4">Descubra as vantagens que os seus gastos e cartão podem oferecer:</h2>
+                <p class="text-lg text-[#b3b3b3] mb-8">Selecione o seu gasto mensal no cartão de crédito e veja o que está perdendo...</p>
+                
+                <!-- Botões de seleção de gastos -->
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-8">
+                    <button class="select-miles-btn py-3 px-6 rounded-lg font-bold transition-colors duration-300" data-gasto="10k">Acima de R$ 10 mil</button>
+                    <button class="select-miles-btn py-3 px-6 rounded-lg font-bold transition-colors duration-300" data-gasto="30k">Acima de R$ 30 mil</button>
+                    <button class="select-miles-btn py-3 px-6 rounded-lg font-bold transition-colors duration-300" data-gasto="50k">Acima de R$ 50 mil</button>
+                </div>
+
+                <!-- Contêiner de Benefícios e Imagem -->
+                <div class="flex flex-col md:flex-row items-center md:items-start bg-[#262626] p-8 rounded-xl shadow-lg gap-8">
+                    <div class="w-full md:w-1/2">
+                        <img id="miles-image" src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-bertellifotografia-2868242_iu64es" alt="Pão de Açúcar, Rio de Janeiro" class="rounded-xl w-full h-auto object-cover border-2 border-logo-gold">
+                    </div>
+                    
+                    <div class="w-full md:w-1/2 flex flex-col items-start text-left">
+                        <ul id="benefits-list" class="space-y-4 text-left">
+                            <!-- Benefícios serão injetados aqui via JS -->
+                        </ul>
+                    </div>
+                <div class="text-center mt-10">
+      <a href="https://wa.me/5511976134095"
+         target="_blank"
+         class="bg-logo-gold text-gray-900 py-4 px-12 rounded-full text-lg font-bold shadow-lg hover:bg-opacity-90 hover:scale-105 transition-all duration-300 inline-block">
+        🚀 QUERO ASSESSORIA!
+      </a>
+    </div>
+        </section>
+        <!-- Fim da Nova Seção com Exemplos -->
+
         <!-- Seção de Destinos (Brasil) -->
         <section id="brazil-section" class="grid grid-cols-1 md:grid-cols-3 gap-8 hidden">
             <div class="md:col-span-3 text-center">
@@ -459,7 +788,7 @@
                 </div>
             </div>
             
-            <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Fernando de Noronha', 'Um santuário ecológico no meio do Atlântico. Suas praias de areia dourada e vida marinha exuberante fazem deste um destino de mergulho incomparável. Exclusividade e beleza natural em um só lugar.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543667/233_-_Um_parai%CC%81so_chamado_Fernando_de_Noronha_Fernando_de_Noronha_-_Brasil_klnye4.mp4')">
+            <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Fernando de Noronha', 'Um santuário ecológico no meio do Atlântico. Suas praias de areia dourada e vida marinha exuberante fazem deste um destino de mergulho incomparável. Exclusividade e beleza natural em um só lugar.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755544252/V%C3%ADdeo_sem_t%C3%ADtulo_Feito_com_o_Clipchamp_2_cv0nqp.mp4')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-evandro-kluge-201796092-12271415_bqvqcr" alt="Praia em Fernando de Noronha com rochas e mar cristalino" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-2xl font-semibold text-logo-gold mb-2">Fernando de Noronha</h3>
@@ -467,7 +796,8 @@
                 </div>
             </div>
 
-            <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Foz do Iguaçu', 'As Cataratas do Iguaçu são uma das maiores maravilhas naturais do planeta. Sinta a força e o som da água, explore a floresta circundante e testemunhe um espetáculo de pura grandiosidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755544230/302_-_A_Beleza_das_quedas_Cataratas_do_Igua%C3%A7u_Foz_do_Igua%C3%A7u_-_Brasil_mtgujx.mov')">
+            <!-- URL de Foz do Iguaçu corrigido -->
+            <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Foz do Iguaçu', 'As Cataratas do Iguaçu são uma das maiores maravilhas naturais do planeta. Sinta a força e o som da água, explore a floresta circundante e testemunhe um espetáculo de pura grandiosidade.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755545880/V%C3%ADdeo_sem_t%C3%ADtulo_Feito_com_o_Clipchamp_3_h1c57e.mp4')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/pexels-tatianeherder-2851515_beb4uv" alt="Cataratas do Iguaçu com arco-íris" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-2xl font-semibold text-logo-gold mb-2">Foz do Iguaçu</h3>
@@ -475,14 +805,19 @@
                 </div>
             </div>
 
-            <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Gramado', 'Gramado é um refúgio europeu no sul do Brasil. Desfrute da arquitetura charmosa, do clima aconchegante e de uma gastronomia que celebra sabores de todo o mundo. Perfeito para relaxar.', 'https://res.cloudinary.com/dxphpupax/video/upload/v1755543522/137_-_A_cidade_mais_bonita_no_Natal_Gramado_-_Brasil_ddymm2.mov')">
+            <div class="card bg-[#262626] rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300" onclick="openModal('Gramado', 'Gramado é um refúgio europeu no sul do Brasil. Desfrute da arquitetura charmosa, do clima aconchegante e de uma gastronomia que celebra sabores de todo o mundo. Perfeito para relaxar.', 'https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/Gemini_Generated_Image_sd1xswsd1xswsd1x_c2ddf0')">
                 <img src="https://res.cloudinary.com/dxphpupax/image/upload/q_auto:best/Gemini_Generated_Image_sd1xswsd1xswsd1x_c2ddf0" alt="Gramado coberta de neve ou geada" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-2xl font-semibold text-logo-gold mb-2">Gramado</h3>
                     <p class="leading-relaxed">Um pedacinho da Europa no Brasil. Com arquitetura charmosa, clima ameno e festivais de cinema e gastronomia.</p>
                 </div>
             </div>
-
+            <!-- Novo botão -->
+            <div class="md:col-span-3 text-center mt-8">
+                <button onclick="showSection('contact-form-section')" class="bg-logo-gold text-gray-900 py-3 px-8 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
+                    Não encontrou seu destino? Fale conosco!
+                </button>
+            </div>
         </section>
 
         <!-- Seção de Destinos (Internacional) -->
@@ -532,6 +867,12 @@
                     <p class="leading-relaxed">Um refúgio de praias de areia branca, águas cristalinas e bangalôs sobre a água. O destino perfeito para relaxar.</p>
                 </div>
             </div>
+            <!-- Novo botão -->
+            <div class="md:col-span-3 text-center mt-8">
+                <button onclick="showSection('contact-form-section')" class="bg-logo-gold text-gray-900 py-3 px-8 rounded-lg font-bold hover:bg-opacity-90 transition-colors duration-300">
+                    Não encontrou seu destino? Fale conosco!
+                </button>
+            </div>
         </section>
 
         <!-- Seção de Dicas de Viagem (Conteúdo atualizado e sem imagens) -->
@@ -541,7 +882,7 @@
             </h2>
             <div class="flex flex-col items-center">
                 <!-- Dica 1: Culinária Local -->
-                <div class="tip-banner" onclick="showTip('tip1')">
+                <div class="tip-banner" onclick="showSection('tip1')">
                     <div class="tip-banner-content">
                         <h3 class="tip-banner-title">Sabores do Mundo: Dicas de Culinária Local</h3>
                         <div class="card-divider"></div>
@@ -553,7 +894,7 @@
                 </div>
 
                 <!-- Dica 2: Organização da Mala -->
-                <div class="tip-banner" onclick="showTip('tip2')">
+                <div class="tip-banner" onclick="showSection('tip2')">
                     <div class="tip-banner-content">
                         <h3 class="tip-banner-title">Malas Inteligentes: Guia para Organizar a Bagagem</h3>
                         <div class="card-divider"></div>
@@ -565,7 +906,7 @@
                 </div>
 
                 <!-- Dica 3: Planejamento da Viagem -->
-                <div class="tip-banner" onclick="showTip('tip3')">
+                <div class="tip-banner" onclick="showSection('tip3')">
                     <div class="tip-banner-content">
                         <h3 class="tip-banner-title">Como Planejar a Viagem Perfeita</h3>
                         <div class="card-divider"></div>
@@ -713,7 +1054,10 @@
             <h2 class="text-3xl font-bold text-center text-logo-gold mb-6">Sua Próxima Aventura Aguarda...</h2>
             <p class="text-center text-[#b3b3b3] mb-6">Receba as melhores ofertas e dicas exclusivas de viagens diretamente na sua caixa de entrada!</p>
             
-            <form action="https://formsubmit.co/sd1viagens@gmail.com" method="POST" class="space-y-6">
+            <!-- O formulário foi modificado para ser enviado via JavaScript, sem a ação de recarregar a página -->
+            <form id="contact-form" class="space-y-6">
+                <!-- Adicionado um campo oculto para o assunto do e-mail, necessário para o FormSubmit -->
+                <input type="hidden" name="_subject" value="Nova Inscrição SD Viagens">
                 <div>
                     <label for="nome" class="block text-sm font-medium text-[#b3b3b3] mb-1">Nome</label>
                     <input type="text" id="nome" name="nome" class="w-full px-4 py-2 border border-[#444] bg-[#333] rounded-lg focus:ring-logo-gold focus:border-logo-gold text-[#e0e0e0]" required>
@@ -764,6 +1108,10 @@
                     Enviar Cadastro
                 </button>
             </form>
+            
+            <div class="return-button-container mt-4">
+                <button class="return-button" onclick="showHome()">Voltar ao Início</button>
+            </div>
         </section>
 
         <!-- Modal para exibir detalhes do destino -->
@@ -781,6 +1129,16 @@
 
         <div id="success-message" class="hidden">Formulário preenchido com sucesso!</div>
     </main>
+    
+    <!-- Botões fixos de redes sociais - Agora com logos -->
+    <div class="social-buttons">
+        <a href="https://wa.me/5511976134095" target="_blank" class="social-button" aria-label="WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp logo">
+        </a>
+        <a href="https://www.instagram.com/sdviagens?igsh=cG5weDRudWVma2l1" target="_blank" class="social-button" aria-label="Instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram logo">
+        </a>
+    </div>
 
     <footer class="bg-[#121212] text-gray-400 text-center py-4 mt-8">
         <p>&copy; 2025 SD Viagens. Todos os direitos reservados.</p>
@@ -804,7 +1162,21 @@
             easing: 'linear'
         });
 
-        // Função para mostrar a seção com um determinado ID
+        // Nova função para exibir a página principal completa (home + destinos populares)
+        function showHome() {
+            const allSections = document.querySelectorAll('main section');
+            allSections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById('home-section').classList.remove('hidden');
+            document.getElementById('popular-destinations-section').classList.remove('hidden');
+            document.getElementById('testimonials-section').classList.remove('hidden');
+            document.getElementById('miles-advisory-section').classList.remove('hidden');
+            document.getElementById('miles-benefits-section').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Função para mostrar outras seções específicas
         function showSection(sectionId) {
             const allSections = document.querySelectorAll('main section');
             allSections.forEach(section => {
@@ -823,23 +1195,12 @@
 
             const contactFormSection = document.getElementById('contact-form-section');
             const messageInput = document.getElementById('message-input');
-            const successMessage = document.getElementById('success-message');
             
             contactFormSection.scrollIntoView({ behavior: 'smooth' });
 
             messageInput.value = `Quero reservar uma viagem para ${destinationName}.`;
             
             messageInput.focus();
-
-            successMessage.style.opacity = '1';
-            successMessage.style.display = 'block';
-
-            setTimeout(() => {
-                successMessage.style.opacity = '0';
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 500);
-            }, 3000);
         }
 
         function openModal(destinationName, destinationDescription, videoUrl) {
@@ -887,14 +1248,20 @@
             videoContainer.innerHTML = '';
             modal.style.display = 'none';
         }
+        
+        // Novo evento para o botão do menu: adiciona/remove a classe de animação
+        const menuButton = document.getElementById('menu-button');
+        const mainMenu = document.getElementById('main-menu');
 
-        document.getElementById('menu-button').addEventListener('click', () => {
-            const menu = document.getElementById('main-menu');
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-            menu.classList.toggle('flex-col');
-            menu.classList.toggle('w-full');
-            menu.classList.toggle('text-center');
+        menuButton.addEventListener('click', () => {
+            mainMenu.classList.toggle('nav-mobile-open');
+        });
+        
+        // Adiciona um listener para fechar o menu ao clicar em um link
+        mainMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                mainMenu.classList.remove('nav-mobile-open');
+            }
         });
 
         document.getElementById('destinos-link').addEventListener('click', (e) => {
@@ -904,11 +1271,6 @@
                 dropdown.classList.toggle('open');
             }
         });
-
-        // Adicionada a função showTip para compatibilidade
-        function showTip(tipId) {
-            showSection(tipId);
-        }
         
         // --- Lógica do Carrossel ---
         const carouselInner = document.getElementById('carousel-inner');
@@ -985,14 +1347,127 @@
             showNextSlide();
             startAutoSlide();
         });
+
+        // --- Lógica de envio do formulário aprimorada ---
+        const contactForm = document.getElementById('contact-form');
+        const successMessage = document.getElementById('success-message');
+        const contactFormSection = document.getElementById('contact-form-section');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Impede o envio padrão do formulário
+            
+            // Obtém os dados do formulário
+            const form = e.target;
+            const formData = new FormData(form);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            try {
+                const response = await fetch(
+                    'https://formsubmit.co/ajax/sd1viagens@gmail.com', // URL de envio do FormSubmit
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                        },
+                        body: JSON.stringify(formObject),
+                    }
+                );
+
+                if (response.ok) {
+                    // Se o envio for bem-sucedido, exibe a mensagem e limpa o formulário
+                    showMessage('Formulário preenchido com sucesso!');
+                    form.reset();
+                } else {
+                    // Se houver erro, exibe uma mensagem de erro
+                    showMessage('Ocorreu um erro. Tente novamente mais tarde.', true);
+                }
+            } catch (error) {
+                // Em caso de erro de rede, exibe uma mensagem de erro
+                showMessage('Ocorreu um erro de rede. Verifique sua conexão e tente novamente.', true);
+            }
+        });
         
-        // Ao carregar, mostramos a seção home e inicializamos o carrossel.
-        window.onload = function() {
-            showSection('home-section');
+        function showMessage(message, isError = false) {
+            successMessage.textContent = message;
+            successMessage.style.backgroundColor = isError ? '#f44336' : '#4CAF50';
+            successMessage.classList.remove('hidden');
+            successMessage.style.opacity = '1';
+
+            setTimeout(() => {
+                successMessage.style.opacity = '0';
+                setTimeout(() => {
+                    successMessage.classList.add('hidden');
+                }, 500);
+            }, 5000);
+        }
+
+        // --- Lógica de exemplos de benefícios de milhas ---
+        const benefitsData = {
+            '10k': [
+                "2 passagens de econômica para a América do Sul.",
+                "2 passagens para qualquer lugar do Brasil.",
+                "3 a 5 noites em hotéis 4 ou 5 estrelas no Brasil."
+            ],
+            '30k': [
+                "2 passagens de executiva para a América do Sul.",
+                "2 passagens de executiva para a Europa ou EUA.",
+                "3 a 5 noites em hotéis de luxo 5 estrelas em destinos internacionais."
+            ],
+            '50k': [
+                "2 passagens de primeira classe para a Europa ou EUA.",
+                "Passagem de executiva ilimitada para a América do Sul.",
+                "Até 7 noites em resorts de luxo exclusivos."
+            ]
+        };
+
+        function updateBenefits(gasto) {
+            const benefitsList = document.getElementById('benefits-list');
+            const buttons = document.querySelectorAll('.select-miles-btn');
+
+            // Atualiza o estado visual dos botões
+            buttons.forEach(button => {
+                if (button.dataset.gasto === gasto) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            // Limpa a lista de benefícios atual
+            benefitsList.innerHTML = '';
+            
+            // Injeta os novos benefícios
+            const benefits = benefitsData[gasto];
+            if (benefits) {
+                benefits.forEach(benefit => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'benefits-list-item text-[#b3b3b3]';
+                    listItem.innerHTML = `<span class="benefits-list-icon">✅</span>${benefit}`;
+                    benefitsList.appendChild(listItem);
+                });
+            }
+        }
+
+        // Adiciona event listeners aos botões
+        document.addEventListener('DOMContentLoaded', () => {
+            const milesButtons = document.querySelectorAll('.select-miles-btn');
+            milesButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    updateBenefits(e.target.dataset.gasto);
+                });
+            });
+
+            // Inicia o carrossel e os benefícios padrão ao carregar a página
             createDots();
             updateCarousel();
             startAutoSlide();
-        };
+            updateBenefits('10k'); // Exibe os benefícios de 10k por padrão
+        });
+
     </script>
 </body>
 </html>
